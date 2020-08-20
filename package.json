@@ -6,6 +6,9 @@
   "license": "MIT",
   "author": "Ivan Stetsenko <i.stetsenko1@gmail.com>",
   "main": "index.js",
+  "dependencies": {
+    "express": "4.17.1"
+  },
   "devDependencies": {
     "typescript": "3.9.7"
   }
