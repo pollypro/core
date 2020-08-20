@@ -11,6 +11,7 @@ export const getConnection = async (): Promise<MongoClient> => {
 
   try {
     connection = await mongoClient.connect();
+    console.log('MongoDB connection established');
   } catch (e) {
     // TODO: catch it
     console.log(e);
