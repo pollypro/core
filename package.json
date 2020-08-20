@@ -1,0 +1,9 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:pollypro/core.git",
+  "license": "MIT",
+  "author": "Ivan Stetsenko <i.stetsenko1@gmail.com>",
+  "main": "index.js"
+}
