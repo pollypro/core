@@ -6,6 +6,12 @@
   "license": "MIT",
   "author": "Ivan Stetsenko <i.stetsenko1@gmail.com>",
   "main": "index.js",
+  "scripts": {
+    "build": "npm-run-all clean tsc",
+    "clean": "rimraf dist/*",
+    "start": "node dist/app.js",
+    "tsc": "tsc"
+  },
   "dependencies": {
     "dotenv-safe": "8.2.0",
     "express": "4.17.1"
