@@ -7,14 +7,11 @@
 /coverage
 
 # production
-/build
+/dist
 
 # editors
 .idea
 .DS_Store
-
-# react-styleguidist
-styleguide
 
 # dotenv
 .env*
