@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npm-run-all clean tsc",
     "clean": "rimraf dist/*",
-    "start": "node dist/app.js",
+    "start": "ts-node-dev --transpile-only src/app.ts",
     "tsc": "tsc"
   },
   "dependencies": {
