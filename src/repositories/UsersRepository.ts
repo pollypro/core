@@ -1,5 +1,6 @@
 import { getConnection } from '../utils/mongodb';
 import { IUser } from '../types/user';
+import { DocumentNotFound } from './errors';
 
 export default class UsersRepository {
 
@@ -13,6 +14,18 @@ export default class UsersRepository {
 
     return await collection
       .insertOne(document);
+  }
+
+  static async findByEmail(email: string) {
+    const collection = await UsersRepository.getCollection();
+    const user = await collection.findOne({ email });
+
+    if (!user) {
+      throw new DocumentNotFound();
+    }
+
+    // TODO: return mapped.
+    return user;
   }
 
   static async drop() {
