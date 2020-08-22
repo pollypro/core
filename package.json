@@ -10,7 +10,8 @@
     "build": "npm-run-all clean tsc",
     "clean": "rimraf dist/*",
     "start": "ts-node-dev --transpile-only src/app.ts",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "seed": "ts-node --transpile-only scripts/seed/seed.ts"
   },
   "dependencies": {
     "cors": "2.8.5",
