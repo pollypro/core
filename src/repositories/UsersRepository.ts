@@ -1,15 +1,5 @@
 import { getConnection } from '../utils/mongodb';
-
-interface User {
-  firstName: string;
-  lastName: string;
-  company: string;
-  permissions: string[];
-  phone: string;
-  email: string;
-  password: string;
-  status: 'activated' | 'deactivated';
-}
+import { IUser } from '../types/user';
 
 export default class UsersRepository {
 
@@ -18,7 +8,7 @@ export default class UsersRepository {
     return connection.db().collection('users');
   }
 
-  static async insertOne(document: User) {
+  static async insertOne(document: IUser) {
     const collection = await UsersRepository.getCollection();
 
     return await collection
