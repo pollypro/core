@@ -7,6 +7,7 @@ import cors from 'cors';
 import { json } from 'body-parser';
 
 // imports from routes
+import AuthRouter from './routes/auth';
 import PingRouter from './routes/ping';
 
 // imports from utils
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(json());
 app.disable('x-powered-by');
 
+app.use('/auth', AuthRouter);
 app.use('/ping', PingRouter);
 
 runApp(app);
