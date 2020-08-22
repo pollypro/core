@@ -4,6 +4,7 @@ configEnv();
 // imports from vendors
 import express from 'express';
 import cors from 'cors';
+import { json } from 'body-parser';
 
 // imports from routes
 import PingRouter from './routes/ping';
@@ -18,6 +19,7 @@ getConnection();
 const app = express();
 
 app.use(cors());
+app.use(json());
 app.disable('x-powered-by');
 
 app.use('/ping', PingRouter);
