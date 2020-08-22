@@ -25,9 +25,10 @@ export default class UsersRepository {
       .insertOne(document);
   }
 
-  static async wipe() {
+  static async drop() {
     const collection = await UsersRepository.getCollection();
 
-    return await collection.deleteMany({});
+    return await collection.drop();
   }
+
 }
