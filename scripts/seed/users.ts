@@ -1,3 +1,4 @@
+import { hashSync } from 'bcrypt';
 import { UsersRepository } from '../../src/repositories';
 
 export const seedUsers = async () => {
@@ -9,7 +10,7 @@ export const seedUsers = async () => {
     email: 'i.stetsenko1@gmail.com',
     permissions: [],
     status: 'activated',
-    password: 'password',
+    password: hashSync('password', 8),
   });
   console.log('Users seeded');
 };
