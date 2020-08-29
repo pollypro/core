@@ -1,4 +1,5 @@
 import { getConnection } from '../utils/mongodb';
+import { UserSchema } from './schemas/User';
 import { IUser } from '../types/user';
 import { DocumentNotFound } from './errors';
 
@@ -6,7 +7,7 @@ export default class UsersRepository {
 
   static async getCollection() {
     const connection = await getConnection();
-    return connection.db().collection('users');
+    return connection.db().collection<UserSchema>('users');
   }
 
   static async insertOne(document: IUser) {
