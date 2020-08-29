@@ -1,6 +1,6 @@
 import { getConnection } from '../utils/mongodb';
 import { ICompany, CompanySchema } from '../types/company';
-import { mapCompany } from '../mappers/companies';
+import { mapCompany } from './mappers/companies';
 
 export default class CompaniesRepository {
 
