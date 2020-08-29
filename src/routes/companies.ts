@@ -9,7 +9,7 @@ const CompaniesRouter = Router();
 CompaniesRouter.post('/create-company', verifyToken, async (request: Request, response: Response) => {
   try {
     const context = await runCommand(CreateCompany, {}, request.body);
-    response.status(200).json({ company: context.company });
+    response.status(200).json(context.company);
   } catch (e) {
     console.log(e);
   }
