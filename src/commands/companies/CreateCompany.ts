@@ -1,13 +1,15 @@
 import { CompaniesRepository } from '../../repositories';
 
 type Params = {
-  name: string;
+  company: {
+    name: string;
+  }
 }
 
 export default class CreateCompany {
 
   async execute(context: Record<string, any>, params: Params) {
-    const company = await CompaniesRepository.insertOne(params);
+    const company = await CompaniesRepository.insertOne(params.company);
     return { ...context, company };
   }
 
