@@ -11,8 +11,12 @@ export default class CompaniesRepository {
   static async insertOne(document: ICompany) {
     const collection = await CompaniesRepository.getCollection();
 
-    return await collection
-      .insertOne(document);
+    try {
+      const result = await collection.insertOne(document);
+      return result.ops[0];
+    } catch (e) {
+      throw e;
+    }
   }
 
   static async drop() {

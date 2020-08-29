@@ -12,8 +12,12 @@ export default class UsersRepository {
   static async insertOne(document: IUser) {
     const collection = await UsersRepository.getCollection();
 
-    return await collection
-      .insertOne(document);
+    try {
+      const result = await collection.insertOne(document);
+      return result.ops[0];
+    } catch (e) {
+      throw e;
+    }
   }
 
   static async findByEmail(email: string) {
