@@ -19,6 +19,12 @@ export default class CompaniesRepository {
     }
   }
 
+  static async list() {
+    const collection = await CompaniesRepository.getCollection();
+
+    return await collection.find().toArray();
+  }
+
   static async drop() {
     const collection = await CompaniesRepository.getCollection();
 
