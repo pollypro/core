@@ -5,6 +5,7 @@ configEnv();
 import express from 'express';
 import cors from 'cors';
 import { json } from 'body-parser';
+import httpContext from 'express-http-context';
 
 // imports from routes
 import AuthRouter from './routes/auth';
@@ -21,6 +22,7 @@ const app = express();
 
 app.use(cors());
 app.use(json());
+app.use(httpContext.middleware);
 app.disable('x-powered-by');
 
 app.use('/auth', AuthRouter);
