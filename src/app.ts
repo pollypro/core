@@ -10,6 +10,7 @@ import httpContext from 'express-http-context';
 // imports from routes
 import AuthRouter from './routes/auth';
 import PingRouter from './routes/ping';
+import CompaniesRouter from './routes/companies';
 
 // imports from utils
 import { runApp } from './utils/server';
@@ -27,5 +28,6 @@ app.disable('x-powered-by');
 
 app.use('/auth', AuthRouter);
 app.use('/ping', PingRouter);
+app.use('/companies', CompaniesRouter);
 
 runApp(app);
