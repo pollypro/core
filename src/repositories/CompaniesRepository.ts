@@ -4,7 +4,6 @@ import { mapCompany } from './mappers/companies';
 import { CompanySchema } from './schemas/company';
 
 export default class CompaniesRepository {
-
   static async getCollection() {
     const connection = await getConnection();
     return connection.db().collection<CompanySchema>('companies');
@@ -37,5 +36,4 @@ export default class CompaniesRepository {
 
     return await collection.drop();
   }
-
 }

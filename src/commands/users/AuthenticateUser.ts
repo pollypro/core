@@ -5,11 +5,10 @@ import { IUser } from '../../types/user';
 
 type Params = {
   email: string;
-  password: string
-}
+  password: string;
+};
 
 export default class AuthenticateUser {
-
   public static readonly dependsOn = [FindUserByEmail];
 
   async execute(context: { user: IUser }, { password }: Params) {
@@ -19,5 +18,4 @@ export default class AuthenticateUser {
 
     return context;
   }
-
 }

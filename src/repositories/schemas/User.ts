@@ -9,4 +9,4 @@ export type UserSchema = WithId<{
   email: string;
   password: string;
   status: 'activated' | 'deactivated' | 'invited';
-}>
+}>;

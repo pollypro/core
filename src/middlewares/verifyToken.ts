@@ -29,5 +29,5 @@ export default (request: Request, response: Response, next: NextFunction) => {
     httpContext.set('currentUser', decoded.user);
 
     next();
-  })
+  });
 };

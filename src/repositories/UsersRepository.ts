@@ -1,11 +1,10 @@
 import { getConnection } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
 import { IUser } from '../types/user';
-import { DocumentNotFound } from './errors'
+import { DocumentNotFound } from './errors';
 import { mapUser } from './mappers/users';
 
 export default class UsersRepository {
-
   static async getCollection() {
     const connection = await getConnection();
     return connection.db().collection<UserSchema>('users');
@@ -38,5 +37,4 @@ export default class UsersRepository {
 
     return await collection.drop();
   }
-
 }

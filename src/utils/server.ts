@@ -5,13 +5,17 @@ const normalizePort = (value: string) => {
   const port = parseInt(value, 10);
 
   // Named pipe
-  if (isNaN(port)) { return value; }
+  if (isNaN(port)) {
+    return value;
+  }
 
   // Port is a number
-  if (port >= 0) { return port; }
+  if (port >= 0) {
+    return port;
+  }
 
   return false;
-}
+};
 
 export const runApp = (app: Application) => {
   const port = normalizePort(process.env.PORT || '3011');
@@ -49,4 +53,4 @@ export const runApp = (app: Application) => {
     const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
     console.log(`Listening on ${bind}`);
   });
-}
+};
