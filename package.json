@@ -9,9 +9,15 @@
   "scripts": {
     "build": "npm-run-all clean tsc",
     "clean": "rimraf dist/*",
+    "prettier:fix": "prettier --write src/**/*",
     "seed": "ts-node --transpile-only scripts/seed/seed.ts",
     "start": "ts-node-dev --transpile-only src/app.ts",
     "tsc": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "prettier": {
     "arrowParens": "always",
