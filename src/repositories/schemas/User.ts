@@ -1,4 +1,6 @@
-export type UserSchema = {
+import { WithId } from 'mongodb';
+
+export type UserSchema = WithId<{
   firstName: string;
   lastName: string;
   company: string;
@@ -7,4 +9,4 @@ export type UserSchema = {
   email: string;
   password: string;
   status: 'activated' | 'deactivated' | 'invited';
-}
+}>
