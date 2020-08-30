@@ -9,9 +9,21 @@
   "scripts": {
     "build": "npm-run-all clean tsc",
     "clean": "rimraf dist/*",
+    "seed": "ts-node --transpile-only scripts/seed/seed.ts",
     "start": "ts-node-dev --transpile-only src/app.ts",
-    "tsc": "tsc",
-    "seed": "ts-node --transpile-only scripts/seed/seed.ts"
+    "tsc": "tsc"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "printWidth": 100,
+    "quoteProps": "as-needed",
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all"
   },
   "dependencies": {
     "bcrypt": "5.0.0",
