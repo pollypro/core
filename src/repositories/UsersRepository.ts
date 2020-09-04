@@ -20,11 +20,11 @@ export default class UsersRepository {
     }
   }
 
-  static async findByEmail(email: string) {
+  static async findByEmail(email: string, opts: { throw: boolean } = { throw: true }) {
     const collection = await UsersRepository.getCollection();
     const user = await collection.findOne({ email });
 
-    if (!user) {
+    if (!user && opts.throw) {
       throw new DocumentNotFound();
     }
 
