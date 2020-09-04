@@ -2,7 +2,6 @@ import { getConnection } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
 import { IUser } from '../types/user';
 import { DocumentNotFound } from './errors';
-import { mapUser } from './mappers/users';
 
 export default class UsersRepository {
   static async getCollection() {
@@ -15,7 +14,7 @@ export default class UsersRepository {
 
     try {
       const result = await collection.insertOne(document);
-      return mapUser(result.ops[0]);
+      return result.ops[0];
     } catch (e) {
       throw e;
     }
@@ -29,7 +28,7 @@ export default class UsersRepository {
       throw new DocumentNotFound();
     }
 
-    return mapUser(user);
+    return user;
   }
 
   static async drop() {
