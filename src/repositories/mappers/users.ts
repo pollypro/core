@@ -2,13 +2,13 @@ import { UserSchema } from '../schemas/User';
 
 export type UserObject = {
   id: string;
-  firstName: string,
-  lastName: string,
-  companyId?: string,
-  permissions: string[],
-  phone: string,
-  email: string,
-  status: string,
+  firstName: string;
+  lastName: string;
+  companyId?: string;
+  permissions: string[];
+  phone: string;
+  email: string;
+  status: string;
 };
 
 export const mapUser = (document: UserSchema): UserObject => ({
