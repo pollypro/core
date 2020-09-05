@@ -1,9 +1,19 @@
 import { compare } from 'bcrypt';
 import { getConnection } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
-import { IUser } from '../types/user';
 import { DocumentNotFound } from './errors';
 import { mapUser } from './mappers/users';
+
+export type NewUserDocument = {
+  firstName: string;
+  lastName: string;
+  companyId?: string;
+  permissions: string[];
+  phone: string;
+  email: string;
+  password: string;
+  status: string;
+};
 
 export default class UsersRepository {
   static async getCollection() {
@@ -18,7 +28,7 @@ export default class UsersRepository {
     return match ? mapUser(user) : null;
   }
 
-  static async insertOne(document: IUser) {
+  static async insertOne(document: NewUserDocument) {
     const collection = await UsersRepository.getCollection();
 
     try {
