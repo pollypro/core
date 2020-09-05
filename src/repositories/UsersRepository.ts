@@ -1,5 +1,5 @@
 import { compare } from 'bcrypt';
-import { getConnection } from '../utils/mongodb';
+import { getConnection, collectionExists } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
 import { DocumentNotFound } from './errors';
 import { mapUser } from './mappers/users';
@@ -51,8 +51,9 @@ export default class UsersRepository {
   }
 
   static async drop() {
-    const collection = await UsersRepository.getCollection();
-
-    return await collection.drop();
+    if (await collectionExists('users')) {
+      const collection = await UsersRepository.getCollection();
+      await collection.drop();
+    }
   }
 }

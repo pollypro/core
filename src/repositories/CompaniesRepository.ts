@@ -1,4 +1,4 @@
-import { getConnection } from '../utils/mongodb';
+import { getConnection, collectionExists } from '../utils/mongodb';
 import { ICompany } from '../types/company';
 import { mapCompany } from './mappers/companies';
 import { CompanySchema } from './schemas/company';
@@ -32,8 +32,9 @@ export default class CompaniesRepository {
   }
 
   static async drop() {
-    const collection = await CompaniesRepository.getCollection();
-
-    return await collection.drop();
+    if (await collectionExists('companies')) {
+      const collection = await CompaniesRepository.getCollection();
+      await collection.drop();
+    }
   }
 }
