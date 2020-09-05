@@ -23,7 +23,7 @@ export default class UsersRepository {
 
     try {
       const result = await collection.insertOne(document);
-      return result.ops[0];
+      return mapUser(result.ops[0]);
     } catch (e) {
       throw e;
     }
@@ -37,7 +37,7 @@ export default class UsersRepository {
       throw new DocumentNotFound();
     }
 
-    return user;
+    return mapUser(user);
   }
 
   static async drop() {
