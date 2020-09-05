@@ -1,6 +1,6 @@
 import { CompanySchema } from '../schemas/company';
 
 export const mapCompany = (document: CompanySchema) => ({
-  id: document._id,
+  id: document._id.toString(),
   name: document.name,
 });
