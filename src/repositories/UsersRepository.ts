@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { compare } from 'bcrypt';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
@@ -7,7 +8,7 @@ import { mapUser } from './mappers/users';
 export type NewUserDocument = {
   firstName: string;
   lastName: string;
-  companyId?: string;
+  companyId?: ObjectId;
   permissions: string[];
   phone: string;
   email: string;

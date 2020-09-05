@@ -1,9 +1,9 @@
-import { WithId } from 'mongodb';
+import { WithId, ObjectId } from 'mongodb';
 
 export type UserSchema = WithId<{
   firstName: string;
   lastName: string;
-  companyId?: string;
+  companyId?: ObjectId;
   permissions: string[];
   phone: string;
   email: string;
