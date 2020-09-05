@@ -1,21 +1,15 @@
-import { compareSync } from 'bcrypt';
 import Unauthorized from '../../errors/Unauthorized';
-import FindUserByEmail from './FindUserByEmail';
 import { IUser } from '../../types/user';
-
-type Params = {
-  email: string;
-  password: string;
-};
+import UsersRepository from '../../repositories/UsersRepository';
 
 export default class AuthenticateUser {
-  public static readonly dependsOn = [FindUserByEmail];
+  async execute(context: { user: IUser }, params: { email: string; password: string }) {
+    const user = await UsersRepository.authenticate(params.email, params.password);
 
-  async execute(context: { user: IUser }, { password }: Params) {
-    if (!compareSync(password, context.user.password)) {
+    if (!user) {
       throw new Unauthorized();
     }
 
-    return context;
+    return { ...context, user };
   }
 }
