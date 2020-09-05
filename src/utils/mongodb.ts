@@ -18,3 +18,9 @@ export const getConnection = async (): Promise<MongoClient> => {
   }
   return connection;
 };
+
+export const collectionExists = async (collectionName: string) => {
+  const connection = await getConnection();
+  const collections = await connection.db().listCollections().toArray();
+  return collections.some((collection) => collection.name === collectionName);
+};
