@@ -9,4 +9,6 @@ export type UserSchema = WithId<{
   email: string;
   password: string;
   status: string;
+  createdAt: Date;
+  updatedAt?: Date;
 }>;
