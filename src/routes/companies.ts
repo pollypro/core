@@ -2,7 +2,9 @@ import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
 import CreateCompany from '../commands/companies/CreateCompany';
 import ListCompanies from '../commands/companies/ListCompanies';
+import DeleteCompany from '../commands/companies/DeleteCompany';
 import verifyToken from '../middlewares/verifyToken';
+import { httpCodeByError } from '../utils/http';
 
 const CompaniesRouter = Router();
 
@@ -28,6 +30,20 @@ CompaniesRouter.post(
       response.status(200).json(context.companies);
     } catch (e) {
       console.log(e);
+    }
+  },
+);
+
+CompaniesRouter.post(
+  '/delete-company',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(DeleteCompany, {}, request.body);
+      response.status(200).json(context.company);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
     }
   },
 );
