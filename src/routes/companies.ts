@@ -40,7 +40,7 @@ CompaniesRouter.post(
   async (request: Request, response: Response) => {
     try {
       await runCommand(DeleteCompany, {}, request.body);
-      response.status(204);
+      response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
