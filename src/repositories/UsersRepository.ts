@@ -40,17 +40,6 @@ export default class UsersRepository {
     }
   }
 
-  static async findByEmail(email: string, opts: { throw: boolean } = { throw: true }) {
-    const collection = await UsersRepository.getCollection();
-    const user = await collection.findOne({ email });
-
-    if (!user && opts.throw) {
-      throw new DocumentNotFound();
-    }
-
-    return mapUser(user);
-  }
-
   static async drop() {
     if (await collectionExists('users')) {
       const collection = await UsersRepository.getCollection();
