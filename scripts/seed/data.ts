@@ -1,4 +1,4 @@
-import { hashSync } from "bcrypt";
+import { hashSync } from 'bcrypt';
 
 export const superUser = {
   firstName: 'Ivan',
@@ -13,4 +13,16 @@ export const superUser = {
 
 export const superCompany = {
   name: 'Super company',
+};
+
+export const company1 = {
+  name: 'Company 2',
+};
+
+export const company2 = {
+  name: 'Company 2',
+};
+
+export const company3 = {
+  name: 'Company 3',
 };

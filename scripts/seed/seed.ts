@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb';
 import { getConnection } from '../../src/utils/mongodb';
 import { CompaniesRepository, UsersRepository } from '../../src/repositories';
 import { wipe } from './wipe';
-import { superUser, superCompany } from './data';
+import { superUser, superCompany, company1, company2, company3 } from './data';
 
 const seed = async () => {
   const connection = await getConnection();
@@ -13,6 +13,10 @@ const seed = async () => {
   await wipe();
 
   console.time('Seeding');
+  await CompaniesRepository.insertOne(company1);
+  await CompaniesRepository.insertOne(company2);
+  await CompaniesRepository.insertOne(company3);
+
   const company = await CompaniesRepository.insertOne(superCompany);
   await UsersRepository.insertOne({
     ...superUser,
