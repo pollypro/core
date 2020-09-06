@@ -16,7 +16,7 @@ export default class CompaniesRepository {
     const collection = await CompaniesRepository.getCollection();
 
     try {
-      const result = await collection.insertOne(document);
+      const result = await collection.insertOne({ ...document, createdAt: new Date() });
       return mapCompany(result.ops[0]);
     } catch (e) {
       throw e;
