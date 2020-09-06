@@ -1,3 +1,4 @@
+// imports from vendors
 import _ from 'lodash/fp';
 
 export type PaginationParams = {
@@ -22,13 +23,15 @@ const defaultMongoPagination: MongoPagination = {
 };
 
 export const getMongoPagination = (params: PaginationParams = {}): MongoPagination => {
+  const paramsOrder = _.upperCase(params.order);
+
   const limit = params.perPage || defaultMongoPagination.limit;
   const skip = _.isNumber(params.page) ? (params.page - 1) * limit : defaultMongoPagination.skip;
 
   const sortBy = params.sortBy || defaultSortBy;
   const order =
-    params.order && (params.order === 'ASC' || params.order === 'DESC')
-      ? params.order === 'ASC'
+    paramsOrder && (paramsOrder === 'ASC' || paramsOrder === 'DESC')
+      ? paramsOrder === 'ASC'
         ? 1
         : -1
       : defaultOrder;
