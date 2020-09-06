@@ -11,11 +11,7 @@ AuthRouter.post('/authenticate', async (request: Request, response: Response) =>
     const context = await runCommand(IssueAuthToken, {}, request.body);
     response.status(200).json({ token: context.token });
   } catch (error) {
-    if (error instanceof DocumentNotFound) {
-      return response.sendStatus(401);
-    }
-
-    const status = httpCodeByError(error);
+    const status = httpCodeByError(error, new Map().set(DocumentNotFound, 401));
     response.sendStatus(status);
   }
 });
