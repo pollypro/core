@@ -13,15 +13,21 @@ export type UserObject = {
   updatedAt?: Date;
 };
 
-export const mapUser = (document: UserSchema): UserObject => ({
-  id: document._id.toString(),
-  firstName: document.firstName,
-  lastName: document.lastName,
-  companyId: document.companyId?.toString(),
-  permissions: document.permissions,
-  phone: document.phone,
-  email: document.email,
-  status: document.status,
-  createdAt: document.createdAt,
-  updatedAt: document.updatedAt,
-});
+export const mapUser = (document?: UserSchema): UserObject | null => {
+  if (!document) {
+    return null;
+  }
+
+  return {
+    id: document._id.toString(),
+    firstName: document.firstName,
+    lastName: document.lastName,
+    companyId: document.companyId?.toString(),
+    permissions: document.permissions,
+    phone: document.phone,
+    email: document.email,
+    status: document.status,
+    createdAt: document.createdAt,
+    updatedAt: document.updatedAt,
+  };
+};

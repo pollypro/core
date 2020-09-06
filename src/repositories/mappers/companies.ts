@@ -7,9 +7,15 @@ export type CompanyObject = {
   updatedAt?: Date;
 };
 
-export const mapCompany = (document: CompanySchema): CompanyObject => ({
-  id: document._id.toString(),
-  name: document.name,
-  createdAt: document.createdAt,
-  updatedAt: document.updatedAt,
-});
+export const mapCompany = (document?: CompanySchema): CompanyObject | null => {
+  if (!document) {
+    return null;
+  }
+
+  return {
+    id: document._id.toString(),
+    name: document.name,
+    createdAt: document.createdAt,
+    updatedAt: document.updatedAt,
+  };
+};
