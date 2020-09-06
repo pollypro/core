@@ -1,6 +1,7 @@
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { mapCompany } from './mappers/companies';
 import { CompanySchema } from './schemas/company';
+import { PaginationParams, getMongoPagination } from './utils/pagination';
 
 type NewCompanyDocument = {
   name: string;
@@ -23,11 +24,17 @@ export default class CompaniesRepository {
     }
   }
 
-  static async list() {
+  static async list({ params }: { params: PaginationParams } = { params: {} }) {
     const collection = await CompaniesRepository.getCollection();
+    const pagination = getMongoPagination(params);
 
     try {
-      const result = await collection.find().toArray();
+      const result = await collection
+        .find()
+        .sort(pagination.sort)
+        .skip(pagination.skip)
+        .limit(pagination.limit)
+        .toArray();
       return result.map(mapCompany);
     } catch (e) {
       throw e;
