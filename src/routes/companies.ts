@@ -24,7 +24,7 @@ CompaniesRouter.post(
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(ListCompanies, {});
+      const context = await runCommand(ListCompanies, {}, request.body);
       response.status(200).json(context.companies);
     } catch (e) {
       console.log(e);
