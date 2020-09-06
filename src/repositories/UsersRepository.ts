@@ -33,7 +33,7 @@ export default class UsersRepository {
     const collection = await UsersRepository.getCollection();
 
     try {
-      const result = await collection.insertOne(document);
+      const result = await collection.insertOne({ ...document, createdAt: new Date() });
       return mapUser(result.ops[0]);
     } catch (e) {
       throw e;
