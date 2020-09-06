@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 
-type PaginationParams = {
+export type PaginationParams = {
   page?: number;
   perPage?: number;
   order?: 'ASC' | 'DESC';
@@ -21,7 +21,7 @@ const defaultMongoPagination: MongoPagination = {
   sort: { [defaultSortBy]: defaultOrder },
 };
 
-export const getMongoPagination = (params: PaginationParams): MongoPagination => {
+export const getMongoPagination = (params: PaginationParams = {}): MongoPagination => {
   const limit = params.perPage || defaultMongoPagination.limit;
   const skip = _.isNumber(params.page) ? (params.page - 1) * limit : defaultMongoPagination.skip;
 
