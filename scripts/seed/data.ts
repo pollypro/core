@@ -16,7 +16,7 @@ export const superCompany = {
 };
 
 export const company1 = {
-  name: 'Company 2',
+  name: 'Company 1',
 };
 
 export const company2 = {
