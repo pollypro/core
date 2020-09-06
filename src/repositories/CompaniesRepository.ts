@@ -36,6 +36,16 @@ export default class CompaniesRepository {
     }
   }
 
+  static async deleteById(id: string) {
+    const collection = await CompaniesRepository.getCollection();
+
+    try {
+      await collection.deleteOne({ _id: new ObjectId(id) });
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async list({ params }: { params: PaginationParams } = { params: {} }) {
     const collection = await CompaniesRepository.getCollection();
     const pagination = getMongoPagination(params);
