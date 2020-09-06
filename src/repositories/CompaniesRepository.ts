@@ -1,7 +1,10 @@
 import { getConnection, collectionExists } from '../utils/mongodb';
-import { ICompany } from '../types/company';
 import { mapCompany } from './mappers/companies';
 import { CompanySchema } from './schemas/company';
+
+type NewCompanyDocument = {
+  name: string;
+};
 
 export default class CompaniesRepository {
   static async getCollection() {
@@ -9,7 +12,7 @@ export default class CompaniesRepository {
     return connection.db().collection<CompanySchema>('companies');
   }
 
-  static async insertOne(document: ICompany) {
+  static async insertOne(document: NewCompanyDocument) {
     const collection = await CompaniesRepository.getCollection();
 
     try {
