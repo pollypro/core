@@ -39,8 +39,8 @@ CompaniesRouter.post(
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(DeleteCompany, {}, request.body);
-      response.status(200).json(context.company);
+      await runCommand(DeleteCompany, {}, request.body);
+      response.status(204);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
