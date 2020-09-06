@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { mapCompany } from './mappers/companies';
 import { CompanySchema } from './schemas/company';
@@ -19,6 +20,17 @@ export default class CompaniesRepository {
     try {
       const result = await collection.insertOne({ ...document, createdAt: new Date() });
       return mapCompany(result.ops[0]);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async findById(id: string) {
+    const collection = await CompaniesRepository.getCollection();
+
+    try {
+      const result = await collection.findOne({ _id: new ObjectId(id) });
+      return mapCompany(result);
     } catch (e) {
       throw e;
     }
