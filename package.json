@@ -41,6 +41,7 @@
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.20",
     "mongodb": "3.6.0",
+    "morgan": "1.10.0",
     "yup": "0.29.3"
   },
   "devDependencies": {
