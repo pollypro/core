@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
 import IssueAuthToken from '../commands/users/IssueAuthToken';
 import { httpCodeByError } from '../utils/http';
-import { DocumentNotFound } from '../repositories/errors';
+import DocumentNotFound from '../errors/DocumentNotFound';
 
 const AuthRouter = Router();
 

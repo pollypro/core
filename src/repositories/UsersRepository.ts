@@ -2,7 +2,6 @@ import { ObjectId } from 'mongodb';
 import { compare } from 'bcrypt';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
-import { DocumentNotFound } from './errors';
 import { mapUser } from './mappers/users';
 
 export type NewUserDocument = {
