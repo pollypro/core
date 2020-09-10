@@ -40,6 +40,17 @@ export default class UsersRepository {
     }
   }
 
+  static async findById(id: string) {
+    const collection = await UsersRepository.getCollection();
+
+    try {
+      const result = await collection.findOne({ _id: new ObjectId(id) });
+      return mapUser(result);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async list(
     { query, params }: { query?: Partial<UserSchema>; params?: PaginationParams } = {
       query: {},
