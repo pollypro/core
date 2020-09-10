@@ -3,6 +3,7 @@ import { runCommand } from '../utils/commands';
 import CurrentUser from '../commands/users/CurrentUser';
 import ListAdmins from '../commands/users/ListAdmins';
 import verifyToken from '../middlewares/verifyToken';
+import { httpCodeByError } from '../utils/http';
 
 const UsersRouter = Router();
 
@@ -15,8 +16,9 @@ UsersRouter.post('/list-admins', verifyToken, async (request: Request, response:
   try {
     const context = await runCommand(ListAdmins, {}, request.body);
     response.status(200).json(context.companies);
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    const status = httpCodeByError(error);
+    response.sendStatus(status);
   }
 });
 
