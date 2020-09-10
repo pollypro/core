@@ -5,8 +5,7 @@ export const superUser = {
   lastName: 'Stetsenko',
   phone: '+380933814747',
   email: 'i.stetsenko1@gmail.com',
-  // @ts-ignore
-  permissions: [],
+  isAdmin: true,
   status: 'activated',
   password: hashSync('password', 8),
 };
