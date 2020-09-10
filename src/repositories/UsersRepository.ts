@@ -16,6 +16,12 @@ export type NewUserDocument = {
   status: string;
 };
 
+export type PatchUserDocument = {
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+};
+
 export default class UsersRepository {
   static async getCollection() {
     const connection = await getConnection();
@@ -46,6 +52,20 @@ export default class UsersRepository {
     try {
       const result = await collection.findOne({ _id: new ObjectId(id) });
       return mapUser(result);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async updateById(id: string, patch: PatchUserDocument) {
+    const collection = await UsersRepository.getCollection();
+
+    try {
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { ...patch, updatedAt: new Date() } },
+      );
+      // TODO: handle result.modifiedCount === 0;
     } catch (e) {
       throw e;
     }
