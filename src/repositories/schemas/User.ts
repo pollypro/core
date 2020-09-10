@@ -4,7 +4,7 @@ export type UserSchema = WithId<{
   firstName: string;
   lastName: string;
   companyId?: ObjectId;
-  permissions: string[];
+  isAdmin?: boolean;
   phone: string;
   email: string;
   password: string;

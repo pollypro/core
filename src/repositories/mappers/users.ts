@@ -5,7 +5,7 @@ export type UserObject = {
   firstName: string;
   lastName: string;
   companyId?: string;
-  permissions: string[];
+  isAdmin: boolean;
   phone: string;
   email: string;
   status: string;
@@ -23,7 +23,7 @@ export const mapUser = (document?: UserSchema): UserObject | null => {
     firstName: document.firstName,
     lastName: document.lastName,
     companyId: document.companyId?.toString(),
-    permissions: document.permissions,
+    isAdmin: Boolean(document.isAdmin),
     phone: document.phone,
     email: document.email,
     status: document.status,
