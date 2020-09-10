@@ -9,7 +9,7 @@ export default class ListAdmins {
     context: Record<string, any>,
     { params }: { params: PaginationParams } = { params: {} },
   ) {
-    const companies = await UsersRepository.listAdmins({ params });
-    return { ...context, companies };
+    const admins = await UsersRepository.listAdmins({ params });
+    return { ...context, admins };
   }
 }
