@@ -3,6 +3,7 @@ import { runCommand } from '../utils/commands';
 import CurrentUser from '../commands/users/CurrentUser';
 import ListAdmins from '../commands/users/ListAdmins';
 import DeleteUser from '../commands/users/DeleteUser';
+import UpdateUser from '../commands/users/UpdateUser';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -27,6 +28,16 @@ UsersRouter.post('/delete-user', verifyToken, async (request: Request, response:
   try {
     const context = await runCommand(DeleteUser, {}, request.body);
     response.status(204).json(context.admins);
+  } catch (error) {
+    const status = httpCodeByError(error);
+    response.sendStatus(status);
+  }
+});
+
+UsersRouter.post('/update-user', verifyToken, async (request: Request, response: Response) => {
+  try {
+    await runCommand(UpdateUser, {}, request.body);
+    response.status(204).send();
   } catch (error) {
     const status = httpCodeByError(error);
     response.sendStatus(status);
