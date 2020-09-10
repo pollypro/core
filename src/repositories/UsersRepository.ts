@@ -4,7 +4,6 @@ import { getConnection, collectionExists } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
 import { mapUser } from './mappers/users';
 import { getMongoPagination, PaginationParams } from './utils/pagination';
-import { mapCompany } from './mappers/companies';
 
 export type NewUserDocument = {
   firstName: string;
@@ -41,13 +40,18 @@ export default class UsersRepository {
     }
   }
 
-  static async listAdmins({ params }: { params: PaginationParams } = { params: {} }) {
+  static async list(
+    { query, params }: { query?: Partial<UserSchema>; params?: PaginationParams } = {
+      query: {},
+      params: {},
+    },
+  ) {
     const collection = await UsersRepository.getCollection();
     const pagination = getMongoPagination(params);
 
     try {
       const result = await collection
-        .find({ isAdmin: true })
+        .find(query)
         .sort(pagination.sort)
         .skip(pagination.skip)
         .limit(pagination.limit)
@@ -56,6 +60,15 @@ export default class UsersRepository {
     } catch (e) {
       throw e;
     }
+  }
+
+  static async listAdmins(
+    { query, params }: { query?: Partial<UserSchema>; params?: PaginationParams } = {
+      query: {},
+      params: {},
+    },
+  ) {
+    return await UsersRepository.list({ query: { ...query, isAdmin: true }, params });
   }
 
   static async drop() {
