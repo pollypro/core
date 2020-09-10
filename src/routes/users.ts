@@ -15,7 +15,7 @@ UsersRouter.post('/get-self', verifyToken, async (request: Request, response: Re
 UsersRouter.post('/list-admins', verifyToken, async (request: Request, response: Response) => {
   try {
     const context = await runCommand(ListAdmins, {}, request.body);
-    response.status(200).json(context.companies);
+    response.status(200).json(context.admins);
   } catch (error) {
     const status = httpCodeByError(error);
     response.sendStatus(status);
