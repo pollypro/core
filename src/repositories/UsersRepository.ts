@@ -51,6 +51,16 @@ export default class UsersRepository {
     }
   }
 
+  static async deleteById(id: string) {
+    const collection = await UsersRepository.getCollection();
+
+    try {
+      await collection.deleteOne({ _id: new ObjectId(id) });
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async list(
     { query, params }: { query?: Partial<UserSchema>; params?: PaginationParams } = {
       query: {},
