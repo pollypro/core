@@ -38,6 +38,7 @@
     "dotenv-safe": "8.2.0",
     "express": "4.17.1",
     "express-http-context": "1.2.4",
+    "generate-password": "1.5.1",
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.20",
     "mongodb": "3.6.0",
