@@ -4,6 +4,7 @@ import CurrentUser from '../commands/users/CurrentUser';
 import ListAdmins from '../commands/users/ListAdmins';
 import DeleteUser from '../commands/users/DeleteUser';
 import UpdateUser from '../commands/users/UpdateUser';
+import CreateAdmin from '../commands/users/CreateAdmin';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -38,6 +39,16 @@ UsersRouter.post('/update-user', verifyToken, async (request: Request, response:
   try {
     await runCommand(UpdateUser, {}, request.body);
     response.status(204).send();
+  } catch (error) {
+    const status = httpCodeByError(error);
+    response.sendStatus(status);
+  }
+});
+
+UsersRouter.post('/create-admin', verifyToken, async (request: Request, response: Response) => {
+  try {
+    const context = await runCommand(CreateAdmin, {}, request.body);
+    response.status(200).send(context.admin);
   } catch (error) {
     const status = httpCodeByError(error);
     response.sendStatus(status);
