@@ -7,9 +7,12 @@ export default class UpdateUser {
 
   async execute(
     context: Record<string, any>,
-    { id, user }: { id: string; user: { firstName?: string; lastName?: string; phone?: string } },
+    {
+      userId,
+      user,
+    }: { userId: string; user: { firstName?: string; lastName?: string; phone?: string } },
   ) {
-    await UsersRepository.updateById(id, user);
+    await UsersRepository.updateById(userId, user);
     return context;
   }
 }

@@ -5,8 +5,8 @@ import FindUserById from './FindUserById';
 export default class DeleteUser {
   public static readonly dependsOn = [CurrentUser, FindUserById];
 
-  async execute(context: Record<string, any>, { id }: { id: string }) {
-    await UsersRepository.deleteById(id);
+  async execute(context: Record<string, any>, { userId }: { userId: string }) {
+    await UsersRepository.deleteById(userId);
     return context;
   }
 }
