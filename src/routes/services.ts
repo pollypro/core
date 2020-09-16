@@ -6,6 +6,7 @@ import DeleteService from '../commands/services/DeleteService';
 import ListServices from '../commands/services/ListServices';
 import PublishService from '../commands/services/PublishService';
 import UnpublishService from '../commands/services/UnpublishService';
+import GetService from '../commands/services/GetService';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -52,6 +53,16 @@ ServicesRouter.post(
     }
   },
 );
+
+ServicesRouter.post('/get-service', verifyToken, async (request: Request, response: Response) => {
+  try {
+    const context = await runCommand(GetService, {}, request.body);
+    response.status(200).json(context.service);
+  } catch (error) {
+    const status = httpCodeByError(error);
+    response.sendStatus(status);
+  }
+});
 
 ServicesRouter.post(
   '/publish-service',
