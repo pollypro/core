@@ -8,7 +8,7 @@ type NewTestDocument = {
 };
 
 type PatchTestDocument = {
-  name: string;
+  name?: string;
 };
 
 export default class TestsRepository {
