@@ -4,6 +4,7 @@ import { httpCodeByError } from '../utils/http';
 import { runCommand } from '../utils/commands';
 import CreateQuestion from '../commands/questions/CreateQuestion';
 import UpdateQuestion from '../commands/questions/UpdateQuestion';
+import DeleteQuestion from '../commands/questions/DeleteQuestion';
 
 const QuestionsRouter = Router();
 
@@ -27,6 +28,20 @@ QuestionsRouter.post(
   async (request: Request, response: Response) => {
     try {
       await runCommand(UpdateQuestion, {}, request.body);
+      response.status(204).send();
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+QuestionsRouter.post(
+  '/delete-question',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      await runCommand(DeleteQuestion, {}, request.body);
       response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
