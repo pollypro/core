@@ -8,6 +8,10 @@ type NewQuestionDocument = {
   serviceId: string | ObjectId;
 };
 
+type PatchQuestionDocument = {
+  question?: string;
+};
+
 export default class QuestionsRepository {
   static async getCollection() {
     const connection = await getConnection();
@@ -35,6 +39,20 @@ export default class QuestionsRepository {
     try {
       const result = await collection.findOne({ _id: new ObjectId(id) });
       return mapQuestion(result);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async updateById(id: string, patch: PatchQuestionDocument) {
+    const collection = await QuestionsRepository.getCollection();
+
+    try {
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { ...patch, updatedAt: new Date() } },
+      );
+      // TODO: handle result.modifiedCount === 0;
     } catch (e) {
       throw e;
     }
