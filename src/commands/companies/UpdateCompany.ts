@@ -7,9 +7,9 @@ export default class UpdateCompany {
 
   async execute(
     context: Record<string, any>,
-    { id, company }: { id: string; company: { name?: string } },
+    { companyId, company }: { companyId: string; company: { name?: string } },
   ) {
-    await CompaniesRepository.updateById(id, company);
+    await CompaniesRepository.updateById(companyId, company);
     return context;
   }
 }

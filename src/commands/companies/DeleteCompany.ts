@@ -5,8 +5,8 @@ import FindCompanyById from './FindCompanyById';
 export default class DeleteCompany {
   public static readonly dependsOn = [CurrentUser, FindCompanyById];
 
-  async execute(context: Record<string, any>, { id }: { id: string }) {
-    await CompaniesRepository.deleteById(id);
+  async execute(context: Record<string, any>, { companyId }: { companyId: string }) {
+    await CompaniesRepository.deleteById(companyId);
     return context;
   }
 }
