@@ -39,6 +39,16 @@ export default class TestsRepository {
     }
   }
 
+  static async deleteById(id: string) {
+    const collection = await TestsRepository.getCollection();
+
+    try {
+      await collection.deleteOne({ _id: new ObjectId(id) });
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async updateById(id: string, patch: PatchTestDocument) {
     const collection = await TestsRepository.getCollection();
 
