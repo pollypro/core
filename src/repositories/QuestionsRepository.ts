@@ -58,6 +58,17 @@ export default class QuestionsRepository {
     }
   }
 
+  static async list({ query }: { query?: Partial<QuestionSchema> } = { query: {} }) {
+    const collection = await QuestionsRepository.getCollection();
+
+    try {
+      const result = await collection.find(query).toArray();
+      return result.map(mapQuestion);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async deleteById(id: string) {
     const collection = await QuestionsRepository.getCollection();
 
