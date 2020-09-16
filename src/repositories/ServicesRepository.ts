@@ -1,47 +1,47 @@
 import { ObjectId } from 'mongodb';
 import { getConnection, collectionExists } from '../utils/mongodb';
-import { mapTest } from './mappers/tests';
-import { TestSchema } from './schemas/test';
+import { mapService } from './mappers/services';
+import { ServiceSchema } from './schemas/service';
 import { getMongoPagination, PaginationParams } from './utils/pagination';
 
-type NewTestDocument = {
+type NewServiceDocument = {
   name: string;
 };
 
-type PatchTestDocument = {
+type PatchServiceDocument = {
   name?: string;
 };
 
-export default class TestsRepository {
+export default class ServicesRepository {
   static async getCollection() {
     const connection = await getConnection();
-    return connection.db().collection<TestSchema>('tests');
+    return connection.db().collection<ServiceSchema>('services');
   }
 
-  static async insertOne(document: NewTestDocument) {
-    const collection = await TestsRepository.getCollection();
+  static async insertOne(document: NewServiceDocument) {
+    const collection = await ServicesRepository.getCollection();
 
     try {
       const result = await collection.insertOne({ ...document, createdAt: new Date() });
-      return mapTest(result.ops[0]);
+      return mapService(result.ops[0]);
     } catch (e) {
       throw e;
     }
   }
 
   static async findById(id: string) {
-    const collection = await TestsRepository.getCollection();
+    const collection = await ServicesRepository.getCollection();
 
     try {
       const result = await collection.findOne({ _id: new ObjectId(id) });
-      return mapTest(result);
+      return mapService(result);
     } catch (e) {
       throw e;
     }
   }
 
   static async deleteById(id: string) {
-    const collection = await TestsRepository.getCollection();
+    const collection = await ServicesRepository.getCollection();
 
     try {
       await collection.deleteOne({ _id: new ObjectId(id) });
@@ -50,8 +50,8 @@ export default class TestsRepository {
     }
   }
 
-  static async updateById(id: string, patch: PatchTestDocument) {
-    const collection = await TestsRepository.getCollection();
+  static async updateById(id: string, patch: PatchServiceDocument) {
+    const collection = await ServicesRepository.getCollection();
 
     try {
       await collection.updateOne(
@@ -65,7 +65,7 @@ export default class TestsRepository {
   }
 
   static async list({ params }: { params: PaginationParams } = { params: {} }) {
-    const collection = await TestsRepository.getCollection();
+    const collection = await ServicesRepository.getCollection();
     const pagination = getMongoPagination(params);
 
     try {
@@ -75,15 +75,15 @@ export default class TestsRepository {
         .skip(pagination.skip)
         .limit(pagination.limit)
         .toArray();
-      return result.map(mapTest);
+      return result.map(mapService);
     } catch (e) {
       throw e;
     }
   }
 
   static async drop() {
-    if (await collectionExists('tests')) {
-      const collection = await TestsRepository.getCollection();
+    if (await collectionExists('services')) {
+      const collection = await ServicesRepository.getCollection();
       await collection.drop();
     }
   }

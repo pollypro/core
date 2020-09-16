@@ -1,6 +1,6 @@
 import { WithId } from 'mongodb';
 
-export type TestSchema = WithId<{
+export type ServiceSchema = WithId<{
   name: string;
   createdAt: Date;
   updatedAt?: Date;

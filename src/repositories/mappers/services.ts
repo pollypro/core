@@ -1,13 +1,13 @@
-import { TestSchema } from '../schemas/Test';
+import { ServiceSchema } from '../schemas/Service';
 
-export type TestObject = {
+export type ServiceObject = {
   id: string;
   name: string;
   createdAt: Date;
   updatedAt?: Date;
 };
 
-export const mapTest = (document?: TestSchema): TestObject | null => {
+export const mapService = (document?: ServiceSchema): ServiceObject | null => {
   if (!document) {
     return null;
   }
