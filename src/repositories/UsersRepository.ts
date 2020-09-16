@@ -8,7 +8,7 @@ import { getMongoPagination, PaginationParams } from './utils/pagination';
 export type NewUserDocument = {
   firstName: string;
   lastName: string;
-  companyId?: ObjectId;
+  companyId?: string | ObjectId;
   isAdmin?: boolean;
   phone: string;
   email: string;
@@ -39,7 +39,11 @@ export default class UsersRepository {
     const collection = await UsersRepository.getCollection();
 
     try {
-      const result = await collection.insertOne({ ...document, createdAt: new Date() });
+      const result = await collection.insertOne({
+        ...document,
+        companyId: document.companyId ? new ObjectId(document.companyId) : null,
+        createdAt: new Date(),
+      });
       return mapUser(result.ops[0]);
     } catch (e) {
       throw e;
