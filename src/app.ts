@@ -10,8 +10,9 @@ import morgan from 'morgan';
 
 // imports from routes
 import AuthRouter from './routes/auth';
-import PingRouter from './routes/ping';
 import CompaniesRouter from './routes/companies';
+import PingRouter from './routes/ping';
+import TestsRouter from './routes/tests';
 import UsersRouter from './routes/users';
 
 // imports from utils
@@ -30,8 +31,9 @@ app.use(httpContext.middleware);
 app.disable('x-powered-by');
 
 app.use('/auth', AuthRouter);
-app.use('/ping', PingRouter);
 app.use('/companies', CompaniesRouter);
+app.use('/ping', PingRouter);
+app.use('/tests', TestsRouter);
 app.use('/users', UsersRouter);
 
 runApp(app);
