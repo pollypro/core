@@ -8,14 +8,14 @@ type NewQuestionDocument = {
   serviceId: string | ObjectId;
 };
 
-export default class ServicesRepository {
+export default class QuestionsRepository {
   static async getCollection() {
     const connection = await getConnection();
     return connection.db().collection<QuestionSchema>('questions');
   }
 
   static async insertOne(document: NewQuestionDocument) {
-    const collection = await ServicesRepository.getCollection();
+    const collection = await QuestionsRepository.getCollection();
 
     try {
       const result = await collection.insertOne({
@@ -29,9 +29,20 @@ export default class ServicesRepository {
     }
   }
 
+  static async findById(id: string) {
+    const collection = await QuestionsRepository.getCollection();
+
+    try {
+      const result = await collection.findOne({ _id: new ObjectId(id) });
+      return mapQuestion(result);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async drop() {
     if (await collectionExists('services')) {
-      const collection = await ServicesRepository.getCollection();
+      const collection = await QuestionsRepository.getCollection();
       await collection.drop();
     }
   }
