@@ -5,6 +5,7 @@ import { runCommand } from '../utils/commands';
 import CreateQuestion from '../commands/questions/CreateQuestion';
 import UpdateQuestion from '../commands/questions/UpdateQuestion';
 import DeleteQuestion from '../commands/questions/DeleteQuestion';
+import ListQuestions from '../commands/questions/ListQuestions';
 
 const QuestionsRouter = Router();
 
@@ -43,6 +44,20 @@ QuestionsRouter.post(
     try {
       await runCommand(DeleteQuestion, {}, request.body);
       response.status(204).send();
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+QuestionsRouter.post(
+  '/list-questions',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(ListQuestions, {}, request.body);
+      response.status(200).json(context.questions);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
