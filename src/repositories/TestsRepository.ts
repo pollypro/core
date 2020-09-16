@@ -2,6 +2,7 @@ import { ObjectId } from 'mongodb';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { mapTest } from './mappers/tests';
 import { TestSchema } from './schemas/test';
+import { getMongoPagination, PaginationParams } from './utils/pagination';
 
 type NewTestDocument = {
   name: string;
@@ -58,6 +59,23 @@ export default class TestsRepository {
         { $set: { ...patch, updatedAt: new Date() } },
       );
       // TODO: handle result.modifiedCount === 0;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async list({ params }: { params: PaginationParams } = { params: {} }) {
+    const collection = await TestsRepository.getCollection();
+    const pagination = getMongoPagination(params);
+
+    try {
+      const result = await collection
+        .find()
+        .sort(pagination.sort)
+        .skip(pagination.skip)
+        .limit(pagination.limit)
+        .toArray();
+      return result.map(mapTest);
     } catch (e) {
       throw e;
     }
