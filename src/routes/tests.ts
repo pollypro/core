@@ -3,6 +3,7 @@ import { runCommand } from '../utils/commands';
 import CreateTest from '../commands/tests/CreateTest';
 import UpdateTest from '../commands/tests/UpdateTest';
 import DeleteTest from '../commands/tests/DeleteTest';
+import ListTests from '../commands/tests/ListTests';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -32,6 +33,16 @@ TestsRouter.post('/delete-test', verifyToken, async (request: Request, response:
   try {
     await runCommand(DeleteTest, {}, request.body);
     response.status(204).send();
+  } catch (error) {
+    const status = httpCodeByError(error);
+    response.sendStatus(status);
+  }
+});
+
+TestsRouter.post('/list-tests', verifyToken, async (request: Request, response: Response) => {
+  try {
+    const context = await runCommand(ListTests, {}, request.body);
+    response.status(200).json(context.tests);
   } catch (error) {
     const status = httpCodeByError(error);
     response.sendStatus(status);
