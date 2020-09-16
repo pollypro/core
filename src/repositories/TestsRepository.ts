@@ -7,6 +7,10 @@ type NewTestDocument = {
   name: string;
 };
 
+type PatchTestDocument = {
+  name: string;
+};
+
 export default class TestsRepository {
   static async getCollection() {
     const connection = await getConnection();
@@ -30,6 +34,20 @@ export default class TestsRepository {
     try {
       const result = await collection.findOne({ _id: new ObjectId(id) });
       return mapTest(result);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async updateById(id: string, patch: PatchTestDocument) {
+    const collection = await TestsRepository.getCollection();
+
+    try {
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { ...patch, updatedAt: new Date() } },
+      );
+      // TODO: handle result.modifiedCount === 0;
     } catch (e) {
       throw e;
     }
