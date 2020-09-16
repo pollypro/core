@@ -22,7 +22,11 @@ export default class ServicesRepository {
     const collection = await ServicesRepository.getCollection();
 
     try {
-      const result = await collection.insertOne({ ...document, createdAt: new Date() });
+      const result = await collection.insertOne({
+        published: false,
+        ...document,
+        createdAt: new Date(),
+      });
       return mapService(result.ops[0]);
     } catch (e) {
       throw e;
