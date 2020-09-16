@@ -12,6 +12,7 @@ import morgan from 'morgan';
 import AuthRouter from './routes/auth';
 import CompaniesRouter from './routes/companies';
 import PingRouter from './routes/ping';
+import QuestionsRouter from './routes/questions';
 import ServicesRouter from './routes/services';
 import UsersRouter from './routes/users';
 
@@ -33,6 +34,7 @@ app.disable('x-powered-by');
 app.use('/auth', AuthRouter);
 app.use('/companies', CompaniesRouter);
 app.use('/ping', PingRouter);
+app.use('/questions', QuestionsRouter);
 app.use('/services', ServicesRouter);
 app.use('/users', UsersRouter);
 
