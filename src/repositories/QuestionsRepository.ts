@@ -58,6 +58,16 @@ export default class QuestionsRepository {
     }
   }
 
+  static async deleteById(id: string) {
+    const collection = await QuestionsRepository.getCollection();
+
+    try {
+      await collection.deleteOne({ _id: new ObjectId(id) });
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async drop() {
     if (await collectionExists('services')) {
       const collection = await QuestionsRepository.getCollection();
