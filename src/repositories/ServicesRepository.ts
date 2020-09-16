@@ -11,6 +11,7 @@ type NewServiceDocument = {
 type PatchServiceDocument = {
   name?: string;
   published?: boolean;
+  publishedAt?: Date;
 };
 
 export default class ServicesRepository {
