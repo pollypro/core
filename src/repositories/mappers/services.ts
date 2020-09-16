@@ -6,6 +6,7 @@ export type ServiceObject = {
   published: boolean;
   createdAt: Date;
   updatedAt?: Date;
+  publishedAt?: Date;
 };
 
 export const mapService = (document?: ServiceSchema): ServiceObject | null => {
@@ -19,5 +20,6 @@ export const mapService = (document?: ServiceSchema): ServiceObject | null => {
     published: document.published,
     createdAt: document.createdAt,
     updatedAt: document.updatedAt,
+    publishedAt: document.publishedAt,
   };
 };

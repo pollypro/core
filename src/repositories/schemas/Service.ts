@@ -5,4 +5,5 @@ export type ServiceSchema = WithId<{
   published: boolean;
   createdAt: Date;
   updatedAt?: Date;
+  publishedAt?: Date;
 }>;
