@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId, FilterQuery } from 'mongodb';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { mapService } from './mappers/services';
 import { ServiceSchema } from './schemas/service';
@@ -74,13 +74,21 @@ export default class ServicesRepository {
     }
   }
 
-  static async list({ params }: { params: PaginationParams } = { params: {} }) {
+  static async list(
+    {
+      query,
+      params,
+    }: { query?: FilterQuery<ServiceSchema>; params?: PaginationParams } = {
+      query: {},
+      params: {},
+    },
+  ) {
     const collection = await ServicesRepository.getCollection();
     const pagination = getMongoPagination(params);
 
     try {
       const result = await collection
-        .find()
+        .find(query)
         .sort(pagination.sort)
         .skip(pagination.skip)
         .limit(pagination.limit)
