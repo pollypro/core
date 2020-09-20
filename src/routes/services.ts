@@ -8,6 +8,7 @@ import PublishService from '../commands/services/PublishService';
 import UnpublishService from '../commands/services/UnpublishService';
 import GetService from '../commands/services/GetService';
 import LinkUsersToService from '../commands/services/LinkUsersToService';
+import UnlinkUsersFromService from '../commands/services/UnlinkUsersFromService';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -117,6 +118,20 @@ ServicesRouter.post(
   async (request: Request, response: Response) => {
     try {
       const context = await runCommand(LinkUsersToService, {}, request.body);
+      response.sendStatus(204);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+ServicesRouter.post(
+  '/unlink-users',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(UnlinkUsersFromService, {}, request.body);
       response.sendStatus(204);
     } catch (error) {
       const status = httpCodeByError(error);
