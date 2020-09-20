@@ -12,6 +12,8 @@ type NewServiceDocument = {
 
 type PatchServiceDocument = {
   name?: string;
+  companies?: ObjectId[];
+  users?: ObjectId[];
   published?: boolean;
   publishedAt?: Date;
 };
