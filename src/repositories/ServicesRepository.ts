@@ -6,6 +6,8 @@ import { getMongoPagination, PaginationParams } from './utils/pagination';
 
 type NewServiceDocument = {
   name: string;
+  companies?: (string | ObjectId)[];
+  users?: (string | ObjectId)[];
 };
 
 type PatchServiceDocument = {
@@ -27,6 +29,8 @@ export default class ServicesRepository {
       const result = await collection.insertOne({
         published: false,
         ...document,
+        companies: (document.companies || []).map((id) => new ObjectId(id)),
+        users: (document.users || []).map((id) => new ObjectId(id)),
         createdAt: new Date(),
       });
       return mapService(result.ops[0]);
