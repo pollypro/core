@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId, FilterQuery } from 'mongodb';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { mapCompany } from './mappers/companies';
 import { CompanySchema } from './schemas/company';
@@ -64,13 +64,18 @@ export default class CompaniesRepository {
     }
   }
 
-  static async list({ params }: { params: PaginationParams } = { params: {} }) {
+  static async list(
+    { query, params }: { query: FilterQuery<CompanySchema>; params: PaginationParams } = {
+      query: {},
+      params: {},
+    },
+  ) {
     const collection = await CompaniesRepository.getCollection();
     const pagination = getMongoPagination(params);
 
     try {
       const result = await collection
-        .find()
+        .find(query)
         .sort(pagination.sort)
         .skip(pagination.skip)
         .limit(pagination.limit)
