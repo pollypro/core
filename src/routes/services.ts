@@ -7,6 +7,7 @@ import ListServices from '../commands/services/ListServices';
 import PublishService from '../commands/services/PublishService';
 import UnpublishService from '../commands/services/UnpublishService';
 import GetService from '../commands/services/GetService';
+import LinkUsersToService from '../commands/services/LinkUsersToService';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -103,6 +104,20 @@ ServicesRouter.post(
     try {
       const context = await runCommand(ListServices, {}, request.body);
       response.status(200).json(context.services);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+ServicesRouter.post(
+  '/link-users',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(LinkUsersToService, {}, request.body);
+      response.sendStatus(204);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
