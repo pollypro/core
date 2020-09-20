@@ -11,8 +11,8 @@ export default class LinkUsersToService {
     context: { service: ServiceObject },
     {
       serviceId,
-      users,
-      companies,
+      users = [],
+      companies = [],
     }: { serviceId: string; users: string[]; companies: string[] },
   ) {
     await ServicesRepository.updateById(serviceId, {
@@ -21,6 +21,7 @@ export default class LinkUsersToService {
         (id) => new ObjectId(id),
       ),
     });
+
     return context;
   }
 }
