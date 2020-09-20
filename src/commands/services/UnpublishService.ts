@@ -6,7 +6,10 @@ export default class UnpublishService {
   public static readonly dependsOn = [CurrentUser, FindServiceById];
 
   async execute(context: Record<string, any>, { serviceId }: { serviceId: string }) {
-    await ServicesRepository.updateById(serviceId, { published: false, publishedAt: null });
+    await ServicesRepository.updateById(serviceId, {
+      published: false,
+      publishedAt: null,
+    });
     return context;
   }
 }

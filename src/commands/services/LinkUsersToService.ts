@@ -9,11 +9,17 @@ export default class LinkUsersToService {
 
   async execute(
     context: { service: ServiceObject },
-    { serviceId, users, companies }: { serviceId: string; users: string[]; companies: string[] },
+    {
+      serviceId,
+      users,
+      companies,
+    }: { serviceId: string; users: string[]; companies: string[] },
   ) {
     await ServicesRepository.updateById(serviceId, {
       users: [...context.service.users, ...users].map((id) => new ObjectId(id)),
-      companies: [...context.service.companies, ...companies].map((id) => new ObjectId(id)),
+      companies: [...context.service.companies, ...companies].map(
+        (id) => new ObjectId(id),
+      ),
     });
     return context;
   }

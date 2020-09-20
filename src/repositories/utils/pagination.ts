@@ -26,7 +26,9 @@ export const getMongoPagination = (params: PaginationParams = {}): MongoPaginati
   const paramsOrder = _.upperCase(params.order);
 
   const limit = params.perPage || defaultMongoPagination.limit;
-  const skip = _.isNumber(params.page) ? (params.page - 1) * limit : defaultMongoPagination.skip;
+  const skip = _.isNumber(params.page)
+    ? (params.page - 1) * limit
+    : defaultMongoPagination.skip;
 
   const sortBy = params.sortBy || defaultSortBy;
   const order =

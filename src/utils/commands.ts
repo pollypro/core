@@ -1,4 +1,8 @@
-export const runCommand = async (Command: any, context: Record<string, any>, params = {}) => {
+export const runCommand = async (
+  Command: any,
+  context: Record<string, any>,
+  params = {},
+) => {
   const queue = []
     .concat(Array.isArray(Command.dependsOn) ? Command.dependsOn : [], Command)
     .map((CommandClass) => new CommandClass());

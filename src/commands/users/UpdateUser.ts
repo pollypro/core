@@ -10,7 +10,10 @@ export default class UpdateUser {
     {
       userId,
       user,
-    }: { userId: string; user: { firstName?: string; lastName?: string; phone?: string } },
+    }: {
+      userId: string;
+      user: { firstName?: string; lastName?: string; phone?: string };
+    },
   ) {
     await UsersRepository.updateById(userId, user);
     return context;

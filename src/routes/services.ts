@@ -54,15 +54,19 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post('/get-service', verifyToken, async (request: Request, response: Response) => {
-  try {
-    const context = await runCommand(GetService, {}, request.body);
-    response.status(200).json(context.service);
-  } catch (error) {
-    const status = httpCodeByError(error);
-    response.sendStatus(status);
-  }
-});
+ServicesRouter.post(
+  '/get-service',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(GetService, {}, request.body);
+      response.status(200).json(context.service);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
 
 ServicesRouter.post(
   '/publish-service',
@@ -92,14 +96,18 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post('/list-services', verifyToken, async (request: Request, response: Response) => {
-  try {
-    const context = await runCommand(ListServices, {}, request.body);
-    response.status(200).json(context.services);
-  } catch (error) {
-    const status = httpCodeByError(error);
-    response.sendStatus(status);
-  }
-});
+ServicesRouter.post(
+  '/list-services',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(ListServices, {}, request.body);
+      response.status(200).json(context.services);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
 
 export default ServicesRouter;

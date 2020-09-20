@@ -21,13 +21,18 @@ export default (request: Request, response: Response, next: NextFunction) => {
     sendForbidden();
   }
 
-  jwt.verify(token, JWT_SECRET, { issuer: JWT_ISSUER }, (error, decoded: { user: any }) => {
-    if (error) {
-      sendForbidden();
-    }
+  jwt.verify(
+    token,
+    JWT_SECRET,
+    { issuer: JWT_ISSUER },
+    (error, decoded: { user: any }) => {
+      if (error) {
+        sendForbidden();
+      }
 
-    httpContext.set('currentUser', decoded.user);
+      httpContext.set('currentUser', decoded.user);
 
-    next();
-  });
+      next();
+    },
+  );
 };
