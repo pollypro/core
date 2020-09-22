@@ -1,5 +1,6 @@
-import Unauthorized from '../errors/Unauthorized';
 import DocumentNotFound from '../errors/DocumentNotFound';
+import Unauthorized from '../errors/Unauthorized';
+import ValidationFailed from '../errors/ValidationFailed';
 
 export const httpCodeByError = (
   error: any,
@@ -11,6 +12,10 @@ export const httpCodeByError = (
 
   if (error instanceof DocumentNotFound) {
     return customRules.get(DocumentNotFound) ?? 404;
+  }
+
+  if (error instanceof ValidationFailed) {
+    return customRules.get(ValidationFailed) ?? 400;
   }
 
   return 500;
