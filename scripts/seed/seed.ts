@@ -5,9 +5,9 @@ import { getConnection } from '../../src/utils/mongodb';
 import { CompaniesRepository, UsersRepository } from '../../src/repositories';
 import { wipe } from './wipe';
 import {
-  superUser,
-  superUser1,
-  superUser2,
+  admin1,
+  admin2,
+  admin3,
   superCompany,
   company1,
   company2,
@@ -26,12 +26,12 @@ const seed = async () => {
 
   const company = await CompaniesRepository.insertOne(superCompany);
   await UsersRepository.insertOne({
-    ...superUser,
+    ...admin1,
     companyId: company.id,
   });
 
-  await UsersRepository.insertOne(superUser1);
-  await UsersRepository.insertOne(superUser2);
+  await UsersRepository.insertOne(admin2);
+  await UsersRepository.insertOne(admin3);
   console.timeEnd('Seeding');
 
   await connection.close();

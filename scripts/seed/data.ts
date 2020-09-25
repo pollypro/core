@@ -1,6 +1,6 @@
 import { hashSync } from 'bcrypt';
 
-export const superUser = {
+export const admin1 = {
   firstName: 'Ivan',
   lastName: 'Stetsenko',
   phone: '+380933814747',
@@ -10,7 +10,7 @@ export const superUser = {
   password: hashSync('password', 8),
 };
 
-export const superUser1 = {
+export const admin2 = {
   firstName: 'Admin',
   lastName: 'Adminenko 1',
   phone: '+380933814747',
@@ -20,7 +20,7 @@ export const superUser1 = {
   password: hashSync('password', 8),
 };
 
-export const superUser2 = {
+export const admin3 = {
   firstName: 'Admin',
   lastName: 'Adminenko 2',
   phone: '+380933814747',
