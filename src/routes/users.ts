@@ -93,6 +93,20 @@ UsersRouter.post(
 );
 
 UsersRouter.post(
+  '/deactivate-user',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      await runCommand(DeactivateUser, {}, request.body);
+      response.status(204).send();
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+UsersRouter.post(
   '/create-admin',
   verifyToken,
   async (request: Request, response: Response) => {
