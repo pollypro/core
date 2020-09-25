@@ -1,10 +1,11 @@
 import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
-import CurrentUser from '../commands/users/CurrentUser';
-import ListAdmins from '../commands/users/ListAdmins';
-import DeleteUser from '../commands/users/DeleteUser';
-import UpdateUser from '../commands/users/UpdateUser';
 import CreateAdmin from '../commands/users/CreateAdmin';
+import CurrentUser from '../commands/users/CurrentUser';
+import DeleteUser from '../commands/users/DeleteUser';
+import ListAdmins from '../commands/users/ListAdmins';
+import ListUsers from '../commands/users/ListUsers';
+import UpdateUser from '../commands/users/UpdateUser';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -26,6 +27,20 @@ UsersRouter.post(
     try {
       const context = await runCommand(ListAdmins, {}, request.body);
       response.status(200).json(context.admins);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+UsersRouter.post(
+  '/list-users',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(ListUsers, {}, request.body);
+      response.status(200).json(context.users);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
