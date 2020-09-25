@@ -8,6 +8,8 @@ import {
   admin1,
   admin2,
   admin3,
+  user1,
+  user2,
   superCompany,
   company1,
   company2,
@@ -32,6 +34,9 @@ const seed = async () => {
 
   await UsersRepository.insertOne(admin2);
   await UsersRepository.insertOne(admin3);
+
+  await UsersRepository.insertOne(user1);
+  await UsersRepository.insertOne(user2);
   console.timeEnd('Seeding');
 
   await connection.close();

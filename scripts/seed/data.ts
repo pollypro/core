@@ -30,6 +30,26 @@ export const admin3 = {
   password: hashSync('password', 8),
 };
 
+export const user1 = {
+  firstName: 'User',
+  lastName: 'Userenko',
+  phone: '+380931234567',
+  email: 'user1@gmail.com',
+  isAdmin: false,
+  status: 'inactive',
+  password: hashSync('password', 8),
+};
+
+export const user2 = {
+  firstName: 'User',
+  lastName: 'Userovich',
+  phone: '+380931234567',
+  email: 'i.stetsenko1@gmail.com',
+  isAdmin: false,
+  status: 'inactive',
+  password: hashSync('password', 8),
+};
+
 export const superCompany = {
   name: 'Super company',
 };
