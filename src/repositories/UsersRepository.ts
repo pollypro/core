@@ -20,6 +20,7 @@ export type PatchUserDocument = {
   firstName?: string;
   lastName?: string;
   phone?: string;
+  status?: 'active' | 'inactive';
 };
 
 export default class UsersRepository {
