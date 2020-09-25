@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId, FilterQuery } from 'mongodb';
 import { compare } from 'bcrypt';
 import { getConnection, collectionExists } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
@@ -86,7 +86,7 @@ export default class UsersRepository {
   }
 
   static async list(
-    { query, params }: { query?: Partial<UserSchema>; params?: PaginationParams } = {
+    { query, params }: { query?: FilterQuery<UserSchema>; params?: PaginationParams } = {
       query: {},
       params: {},
     },
