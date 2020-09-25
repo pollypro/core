@@ -1,7 +1,9 @@
 import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
+import ActivateUser from '../commands/users/ActivateUser';
 import CreateAdmin from '../commands/users/CreateAdmin';
 import CurrentUser from '../commands/users/CurrentUser';
+import DeactivateUser from '../commands/users/DeactivateUser';
 import DeleteUser from '../commands/users/DeleteUser';
 import ListAdmins from '../commands/users/ListAdmins';
 import ListUsers from '../commands/users/ListUsers';
@@ -68,6 +70,20 @@ UsersRouter.post(
   async (request: Request, response: Response) => {
     try {
       await runCommand(UpdateUser, {}, request.body);
+      response.status(204).send();
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+UsersRouter.post(
+  '/activate-user',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      await runCommand(ActivateUser, {}, request.body);
       response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
