@@ -8,6 +8,7 @@ import {
   DeleteUser,
   ListAdmins,
   ListUsers,
+  SearchUsersByFirstLastName,
   UpdateUser,
 } from '../commands/users';
 import verifyToken from '../middlewares/verifyToken';
@@ -114,6 +115,20 @@ UsersRouter.post(
   async (request: Request, response: Response) => {
     try {
       const context = await runCommand(CreateAdmin, {}, request.body);
+      response.status(200).send(context.admin);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+UsersRouter.post(
+  '/search-users',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(SearchUsersByFirstLastName, {}, request.body);
       response.status(200).send(context.admin);
     } catch (error) {
       const status = httpCodeByError(error);
