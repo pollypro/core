@@ -108,6 +108,39 @@ export default class UsersRepository {
     }
   }
 
+  static async searchByFirstLastName(
+    {
+      query,
+      params,
+    }: {
+      query: string;
+      params?: PaginationParams;
+    } = { query: '', params: {} },
+  ) {
+    const collection = await UsersRepository.getCollection();
+    const pagination = getMongoPagination(params);
+
+    const regexQuery = `.*${query}.*`;
+
+    try {
+      const result = await collection
+        .find({
+          isAdmin: false,
+          $or: [
+            { firstName: { $regex: regexQuery, $options: 'i' } },
+            { lastName: { $regex: regexQuery, $options: 'i' } },
+          ],
+        })
+        .sort(pagination.sort)
+        .skip(pagination.skip)
+        .limit(pagination.limit)
+        .toArray();
+      return result.map(mapUser);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static async listAdmins(
     { query, params }: { query?: Partial<UserSchema>; params?: PaginationParams } = {
       query: {},
