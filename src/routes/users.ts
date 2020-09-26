@@ -129,7 +129,7 @@ UsersRouter.post(
   async (request: Request, response: Response) => {
     try {
       const context = await runCommand(SearchUsersByFirstLastName, {}, request.body);
-      response.status(200).send(context.admin);
+      response.status(200).send(context.users);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
