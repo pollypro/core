@@ -1,16 +1,18 @@
 import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
-import CreateService from '../commands/services/CreateService';
-import UpdateService from '../commands/services/UpdateService';
-import DeleteService from '../commands/services/DeleteService';
-import ListServices from '../commands/services/ListServices';
-import PublishService from '../commands/services/PublishService';
-import UnpublishService from '../commands/services/UnpublishService';
-import GetService from '../commands/services/GetService';
-import LinkUsersToService from '../commands/services/LinkUsersToService';
-import UnlinkUsersFromService from '../commands/services/UnlinkUsersFromService';
-import ListLinkedCompanies from '../commands/services/ListLinkedCompanies';
-import ListLinkedUsers from '../commands/services/ListLinkedUsers';
+import {
+  CreateService,
+  DeleteService,
+  GetService,
+  LinkUsersToService,
+  ListLinkedCompanies,
+  ListLinkedUsers,
+  ListServices,
+  PublishService,
+  UnlinkUsersFromService,
+  UnpublishService,
+  UpdateService,
+} from '../commands/services';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
