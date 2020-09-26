@@ -10,6 +10,7 @@ import GetService from '../commands/services/GetService';
 import LinkUsersToService from '../commands/services/LinkUsersToService';
 import UnlinkUsersFromService from '../commands/services/UnlinkUsersFromService';
 import ListLinkedCompanies from '../commands/services/ListLinkedCompanies';
+import ListLinkedUsers from '../commands/services/ListLinkedUsers';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
@@ -148,6 +149,20 @@ ServicesRouter.post(
     try {
       const context = await runCommand(ListLinkedCompanies, {}, request.body);
       response.status(200).json(context.linkedCompanies);
+    } catch (error) {
+      const status = httpCodeByError(error);
+      response.sendStatus(status);
+    }
+  },
+);
+
+ServicesRouter.post(
+  '/list-linked-users',
+  verifyToken,
+  async (request: Request, response: Response) => {
+    try {
+      const context = await runCommand(ListLinkedUsers, {}, request.body);
+      response.status(200).json(context.linkedUsers);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
