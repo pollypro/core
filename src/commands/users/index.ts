@@ -7,4 +7,5 @@ export { default as DeleteUser } from './DeleteUser';
 export { default as IssueAuthToken } from './IssueAuthToken';
 export { default as ListAdmins } from './ListAdmins';
 export { default as ListUsers } from './ListUsers';
+export { default as SearchUsersByFirstLastName } from './SearchUsersByFirstLastName';
 export { default as UpdateUser } from './UpdateUser';
