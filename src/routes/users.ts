@@ -1,13 +1,15 @@
 import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
-import ActivateUser from '../commands/users/ActivateUser';
-import CreateAdmin from '../commands/users/CreateAdmin';
-import CurrentUser from '../commands/users/CurrentUser';
-import DeactivateUser from '../commands/users/DeactivateUser';
-import DeleteUser from '../commands/users/DeleteUser';
-import ListAdmins from '../commands/users/ListAdmins';
-import ListUsers from '../commands/users/ListUsers';
-import UpdateUser from '../commands/users/UpdateUser';
+import {
+  ActivateUser,
+  CreateAdmin,
+  CurrentUser,
+  DeactivateUser,
+  DeleteUser,
+  ListAdmins,
+  ListUsers,
+  UpdateUser,
+} from '../commands/users';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
