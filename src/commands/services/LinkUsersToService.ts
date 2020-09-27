@@ -11,14 +11,12 @@ const uniqIds = (ids: string[]): ObjectId[] =>
 
 type Params = {
   serviceId: string;
-  users?: string[];
-  companies?: string[];
+  userId: string;
 };
 
 const ParamsSchema = yup.object({
   serviceId: yup.string().required(),
-  users: yup.array().of(yup.string()).optional().default([]),
-  companies: yup.array().of(yup.string()).optional().default([]),
+  userId: yup.string().required(),
 });
 
 export default class LinkUsersToService {
@@ -28,8 +26,7 @@ export default class LinkUsersToService {
     const validParams = await LinkUsersToService.validateParams(params);
 
     await ServicesRepository.updateById(validParams.serviceId, {
-      users: uniqIds([...context.service.users, ...validParams.users]),
-      companies: uniqIds([...context.service.companies, ...validParams.companies]),
+      users: uniqIds([...context.service.users, validParams.userId]),
     });
 
     return context;
