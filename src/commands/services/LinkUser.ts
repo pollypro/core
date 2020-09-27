@@ -19,11 +19,11 @@ const ParamsSchema = yup.object({
   userId: yup.string().required(),
 });
 
-export default class LinkUsersToService {
+export default class LinkUser {
   public static readonly dependsOn = [CurrentUser, FindServiceById];
 
   async execute(context: { service: ServiceObject }, params: Params) {
-    const validParams = await LinkUsersToService.validateParams(params);
+    const validParams = await LinkUser.validateParams(params);
 
     await ServicesRepository.updateById(validParams.serviceId, {
       users: uniqIds([...context.service.users, validParams.userId]),

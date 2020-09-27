@@ -4,7 +4,7 @@ import {
   CreateService,
   DeleteService,
   GetService,
-  LinkUsersToService,
+  LinkUser,
   ListLinkedCompanies,
   ListLinkedUsers,
   ListServices,
@@ -121,7 +121,7 @@ ServicesRouter.post(
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(LinkUsersToService, {}, request.body);
+      const context = await runCommand(LinkUser, {}, request.body);
       response.sendStatus(204);
     } catch (error) {
       const status = httpCodeByError(error);
