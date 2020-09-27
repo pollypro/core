@@ -117,7 +117,7 @@ ServicesRouter.post(
 );
 
 ServicesRouter.post(
-  '/link-users',
+  '/link-user',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
