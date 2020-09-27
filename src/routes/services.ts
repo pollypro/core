@@ -9,7 +9,7 @@ import {
   ListLinkedUsers,
   ListServices,
   PublishService,
-  UnlinkUsersFromService,
+  UnlinkUser,
   UnpublishService,
   UpdateService,
 } from '../commands/services';
@@ -135,7 +135,7 @@ ServicesRouter.post(
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(UnlinkUsersFromService, {}, request.body);
+      const context = await runCommand(UnlinkUser, {}, request.body);
       response.sendStatus(204);
     } catch (error) {
       const status = httpCodeByError(error);
