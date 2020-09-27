@@ -8,14 +8,12 @@ import ValidationFailed from '../../errors/ValidationFailed';
 
 type Params = {
   serviceId: string;
-  users?: string[];
-  companies?: string[];
+  userId: string;
 };
 
 const ParamsSchema = yup.object({
   serviceId: yup.string().required(),
-  users: yup.array().of(yup.string()).optional().default([]),
-  companies: yup.array().of(yup.string()).optional().default([]),
+  userId: yup.string().required(),
 });
 
 export default class UnlinkUsersFromService {
@@ -26,10 +24,7 @@ export default class UnlinkUsersFromService {
 
     await ServicesRepository.updateById(validParams.serviceId, {
       users: context.service.users
-        .filter((id) => !validParams.users.includes(id))
-        .map((id) => new ObjectId(id)),
-      companies: context.service.companies
-        .filter((id) => !validParams.companies.includes(id))
+        .filter((id) => validParams.userId !== id)
         .map((id) => new ObjectId(id)),
     });
 
