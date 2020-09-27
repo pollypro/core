@@ -131,7 +131,7 @@ ServicesRouter.post(
 );
 
 ServicesRouter.post(
-  '/unlink-users',
+  '/unlink-user',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
