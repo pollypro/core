@@ -18,7 +18,7 @@ export default (request: Request, response: Response, next: NextFunction) => {
   const [type, token] = authorization.split(' ');
 
   if (!type || !token || type !== 'Bearer') {
-    sendForbidden();
+    return sendForbidden();
   }
 
   jwt.verify(
@@ -26,13 +26,13 @@ export default (request: Request, response: Response, next: NextFunction) => {
     JWT_SECRET,
     { issuer: JWT_ISSUER },
     (error, decoded: { user: any }) => {
-      if (error) {
-        sendForbidden();
+      if (error || !decoded?.user) {
+        return sendForbidden();
       }
 
       httpContext.set('currentUser', decoded.user);
 
-      next();
+      return next();
     },
   );
 };
