@@ -5,7 +5,7 @@ import { QuestionSchema } from './schemas/question';
 
 type NewQuestionDocument = {
   question: string;
-  serviceId: string | ObjectId;
+  testId: string | ObjectId;
 };
 
 type PatchQuestionDocument = {
@@ -24,7 +24,7 @@ export default class QuestionsRepository {
     try {
       const result = await collection.insertOne({
         ...document,
-        serviceId: new ObjectId(document.serviceId),
+        testId: new ObjectId(document.testId),
         createdAt: new Date(),
       });
       return mapQuestion(result.ops[0]);
