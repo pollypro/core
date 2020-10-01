@@ -12,7 +12,7 @@ import {
   UnlinkUser,
   UnpublishService,
   UpdateService,
-} from '../commands/services';
+} from '../commands/tests';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 

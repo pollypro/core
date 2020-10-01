@@ -1,29 +1,29 @@
 import * as yup from 'yup';
 import { ObjectId } from 'mongodb';
-import { ServicesRepository } from '../../repositories';
+import { TestsRepository } from '../../repositories';
 import CurrentUser from '../users/CurrentUser';
-import FindServiceById from './FindServiceById';
-import { ServiceObject } from '../../repositories/mappers/services';
+import FindTestById from './FindTestById';
+import { TestObject } from '../../repositories/mappers/tests';
 import ValidationFailed from '../../errors/ValidationFailed';
 
 type Params = {
-  serviceId: string;
+  testId: string;
   userId: string;
 };
 
 const ParamsSchema = yup.object({
-  serviceId: yup.string().required(),
+  testId: yup.string().required(),
   userId: yup.string().required(),
 });
 
 export default class UnlinkUser {
-  public static readonly dependsOn = [CurrentUser, FindServiceById];
+  public static readonly dependsOn = [CurrentUser, FindTestById];
 
-  async execute(context: { service: ServiceObject }, params: Params) {
+  async execute(context: { test: TestObject }, params: Params) {
     const validParams = await UnlinkUser.validateParams(params);
 
-    await ServicesRepository.updateById(validParams.serviceId, {
-      users: context.service.users
+    await TestsRepository.updateById(validParams.testId, {
+      users: context.test.users
         .filter((id) => validParams.userId !== id)
         .map((id) => new ObjectId(id)),
     });

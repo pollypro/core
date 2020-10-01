@@ -1,0 +1,11 @@
+export { default as CreateTest } from './CreateTest';
+export { default as DeleteTest } from './DeleteTest';
+export { default as GetTest } from './GetTest';
+export { default as LinkUser } from './LinkUser';
+export { default as ListLinkedCompanies } from './ListLinkedCompanies';
+export { default as ListLinkedUsers } from './ListLinkedUsers';
+export { default as ListTests } from './ListTests';
+export { default as PublishTest } from './PublishTest';
+export { default as UnlinkUser } from './UnlinkUser';
+export { default as UnpublishTest } from './UnpublishTest';
+export { default as UpdateService } from './UpdateTest';

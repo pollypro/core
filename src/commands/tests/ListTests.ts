@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { ServicesRepository } from '../../repositories';
+import { TestsRepository } from '../../repositories';
 import CurrentUser from '../users/CurrentUser';
 import { PaginationParams } from '../../repositories/utils/pagination';
 import { UserObject } from '../../repositories/mappers/users';
@@ -8,17 +8,17 @@ type Context = {
   currentUser: UserObject;
 };
 
-export default class ListServices {
+export default class ListTests {
   public static readonly dependsOn = [CurrentUser];
 
   async execute(
     context: Context,
     { params }: { params: PaginationParams } = { params: {} },
   ) {
-    const { query } = await ListServices.checkPermissions(context);
+    const { query } = await ListTests.checkPermissions(context);
 
-    const services = await ServicesRepository.list({ query, params });
-    return { ...context, services };
+    const tests = await TestsRepository.list({ query, params });
+    return { ...context, tests };
   }
 
   static async checkPermissions(context: Context) {
