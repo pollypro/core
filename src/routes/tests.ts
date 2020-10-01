@@ -1,30 +1,30 @@
 import { Request, Response, Router } from 'express';
 import { runCommand } from '../utils/commands';
 import {
-  CreateService,
-  DeleteService,
-  GetService,
+  CreateTest,
+  DeleteTest,
+  GetTest,
   LinkUser,
   ListLinkedCompanies,
   ListLinkedUsers,
-  ListServices,
-  PublishService,
+  ListTests,
+  PublishTest,
   UnlinkUser,
-  UnpublishService,
-  UpdateService,
+  UnpublishTest,
+  UpdateTest,
 } from '../commands/tests';
 import verifyToken from '../middlewares/verifyToken';
 import { httpCodeByError } from '../utils/http';
 
-const ServicesRouter = Router();
+const TestsRouter = Router();
 
-ServicesRouter.post(
-  '/create-service',
+TestsRouter.post(
+  '/create-test',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(CreateService, {}, request.body);
-      response.status(200).json(context.service);
+      const context = await runCommand(CreateTest, {}, request.body);
+      response.status(200).json(context.test);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
@@ -32,12 +32,12 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
-  '/update-service',
+TestsRouter.post(
+  '/update-test',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      await runCommand(UpdateService, {}, request.body);
+      await runCommand(UpdateTest, {}, request.body);
       response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
@@ -46,12 +46,12 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
-  '/delete-service',
+TestsRouter.post(
+  '/delete-test',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      await runCommand(DeleteService, {}, request.body);
+      await runCommand(DeleteTest, {}, request.body);
       response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
@@ -60,13 +60,13 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
-  '/get-service',
+TestsRouter.post(
+  '/get-test',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(GetService, {}, request.body);
-      response.status(200).json(context.service);
+      const context = await runCommand(GetTest, {}, request.body);
+      response.status(200).json(context.test);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
@@ -74,12 +74,12 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
-  '/publish-service',
+TestsRouter.post(
+  '/publish-test',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      await runCommand(PublishService, {}, request.body);
+      await runCommand(PublishTest, {}, request.body);
       response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
@@ -88,12 +88,12 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
-  '/unpublish-service',
+TestsRouter.post(
+  '/unpublish-test',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      await runCommand(UnpublishService, {}, request.body);
+      await runCommand(UnpublishTest, {}, request.body);
       response.status(204).send();
     } catch (error) {
       const status = httpCodeByError(error);
@@ -102,13 +102,13 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
-  '/list-services',
+TestsRouter.post(
+  '/list-tests',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(ListServices, {}, request.body);
-      response.status(200).json(context.services);
+      const context = await runCommand(ListTests, {}, request.body);
+      response.status(200).json(context.tests);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
@@ -116,12 +116,12 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
+TestsRouter.post(
   '/link-user',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(LinkUser, {}, request.body);
+      await runCommand(LinkUser, {}, request.body);
       response.sendStatus(204);
     } catch (error) {
       const status = httpCodeByError(error);
@@ -130,12 +130,12 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
+TestsRouter.post(
   '/unlink-user',
   verifyToken,
   async (request: Request, response: Response) => {
     try {
-      const context = await runCommand(UnlinkUser, {}, request.body);
+      await runCommand(UnlinkUser, {}, request.body);
       response.sendStatus(204);
     } catch (error) {
       const status = httpCodeByError(error);
@@ -144,7 +144,7 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
+TestsRouter.post(
   '/list-linked-companies',
   verifyToken,
   async (request: Request, response: Response) => {
@@ -158,7 +158,7 @@ ServicesRouter.post(
   },
 );
 
-ServicesRouter.post(
+TestsRouter.post(
   '/list-linked-users',
   verifyToken,
   async (request: Request, response: Response) => {
@@ -172,4 +172,4 @@ ServicesRouter.post(
   },
 );
 
-export default ServicesRouter;
+export default TestsRouter;

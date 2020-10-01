@@ -13,7 +13,7 @@ import AuthRouter from './routes/auth';
 import CompaniesRouter from './routes/companies';
 import PingRouter from './routes/ping';
 import QuestionsRouter from './routes/questions';
-import ServicesRouter from './routes/services';
+import TestsRouter from './routes/tests';
 import UsersRouter from './routes/users';
 
 // imports from utils
@@ -35,7 +35,7 @@ app.use('/auth', AuthRouter);
 app.use('/companies', CompaniesRouter);
 app.use('/ping', PingRouter);
 app.use('/questions', QuestionsRouter);
-app.use('/services', ServicesRouter);
+app.use('/tests', TestsRouter);
 app.use('/users', UsersRouter);
 
 runApp(app);
