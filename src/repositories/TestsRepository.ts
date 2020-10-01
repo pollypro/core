@@ -6,13 +6,11 @@ import { getMongoPagination, PaginationParams } from './utils/pagination';
 
 type NewTestDocument = {
   name: string;
-  companies?: ObjectId[];
   users?: ObjectId[];
 };
 
 type PatchTestDocument = {
   name?: string;
-  companies?: ObjectId[];
   users?: ObjectId[];
   published?: boolean;
   publishedAt?: Date;
