@@ -1,16 +1,16 @@
 import { ObjectId, FilterQuery } from 'mongodb';
 import { getConnection, collectionExists } from '../utils/mongodb';
-import { mapService } from './mappers/services';
-import { ServiceSchema } from './schemas/service';
+import { mapTest } from './mappers/tests';
+import { TestSchema } from './schemas/Test';
 import { getMongoPagination, PaginationParams } from './utils/pagination';
 
-type NewServiceDocument = {
+type NewTestDocument = {
   name: string;
   companies?: ObjectId[];
   users?: ObjectId[];
 };
 
-type PatchServiceDocument = {
+type PatchTestDocument = {
   name?: string;
   companies?: ObjectId[];
   users?: ObjectId[];
@@ -18,14 +18,14 @@ type PatchServiceDocument = {
   publishedAt?: Date;
 };
 
-export default class ServicesRepository {
+export default class TestsRepository {
   static async getCollection() {
     const connection = await getConnection();
-    return connection.db().collection<ServiceSchema>('services');
+    return connection.db().collection<TestSchema>('tests');
   }
 
-  static async insertOne(document: NewServiceDocument) {
-    const collection = await ServicesRepository.getCollection();
+  static async insertOne(document: NewTestDocument) {
+    const collection = await TestsRepository.getCollection();
 
     try {
       const result = await collection.insertOne({
@@ -33,25 +33,25 @@ export default class ServicesRepository {
         ...document,
         createdAt: new Date(),
       });
-      return mapService(result.ops[0]);
+      return mapTest(result.ops[0]);
     } catch (e) {
       throw e;
     }
   }
 
   static async findById(id: string) {
-    const collection = await ServicesRepository.getCollection();
+    const collection = await TestsRepository.getCollection();
 
     try {
       const result = await collection.findOne({ _id: new ObjectId(id) });
-      return mapService(result);
+      return mapTest(result);
     } catch (e) {
       throw e;
     }
   }
 
   static async deleteById(id: string) {
-    const collection = await ServicesRepository.getCollection();
+    const collection = await TestsRepository.getCollection();
 
     try {
       await collection.deleteOne({ _id: new ObjectId(id) });
@@ -60,8 +60,8 @@ export default class ServicesRepository {
     }
   }
 
-  static async updateById(id: string, patch: PatchServiceDocument) {
-    const collection = await ServicesRepository.getCollection();
+  static async updateById(id: string, patch: PatchTestDocument) {
+    const collection = await TestsRepository.getCollection();
 
     try {
       await collection.updateOne(
@@ -75,15 +75,12 @@ export default class ServicesRepository {
   }
 
   static async list(
-    {
-      query,
-      params,
-    }: { query?: FilterQuery<ServiceSchema>; params?: PaginationParams } = {
+    { query, params }: { query?: FilterQuery<TestSchema>; params?: PaginationParams } = {
       query: {},
       params: {},
     },
   ) {
-    const collection = await ServicesRepository.getCollection();
+    const collection = await TestsRepository.getCollection();
     const pagination = getMongoPagination(params);
 
     try {
@@ -93,15 +90,15 @@ export default class ServicesRepository {
         .skip(pagination.skip)
         .limit(pagination.limit)
         .toArray();
-      return result.map(mapService);
+      return result.map(mapTest);
     } catch (e) {
       throw e;
     }
   }
 
   static async drop() {
-    if (await collectionExists('services')) {
-      const collection = await ServicesRepository.getCollection();
+    if (await collectionExists('tests')) {
+      const collection = await TestsRepository.getCollection();
       await collection.drop();
     }
   }

@@ -1,6 +1,6 @@
 import { WithId, ObjectId } from 'mongodb';
 
-export type ServiceSchema = WithId<{
+export type TestSchema = WithId<{
   name: string;
   published: boolean;
   companies?: ObjectId[];
