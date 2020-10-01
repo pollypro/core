@@ -7,12 +7,12 @@ export default class ListQuestions {
 
   async execute(
     context: Record<string, any>,
-    { query }: { query: { serviceId?: string } } = { query: {} },
+    { query }: { query: { testId?: string } } = { query: {} },
   ) {
-    const listQuery: { serviceId?: ObjectId } = {};
+    const listQuery: { testId?: ObjectId } = {};
 
-    if (query.serviceId) {
-      listQuery.serviceId = new ObjectId(query.serviceId);
+    if (query.testId) {
+      listQuery.testId = new ObjectId(query.testId);
     }
 
     const questions = await QuestionsRepository.list({ query: listQuery });
