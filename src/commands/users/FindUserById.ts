@@ -3,12 +3,12 @@ import DocumentNotFound from '../../errors/DocumentNotFound';
 
 export default class FindUserById {
   async execute(context: Record<string, any>, { userId }: { userId: string }) {
-    const company = await UsersRepository.findById(userId);
+    const user = await UsersRepository.findById(userId);
 
-    if (!company) {
+    if (!user) {
       throw new DocumentNotFound();
     }
 
-    return { ...context, company };
+    return { ...context, user };
   }
 }
