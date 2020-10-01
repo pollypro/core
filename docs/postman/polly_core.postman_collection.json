@@ -1,0 +1,689 @@
+{
+  "info": {
+    "_postman_id": "180d580a-2d82-4f72-af00-8a32aff008f6",
+    "name": "Polly core",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "List companies",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/companies/list-companies",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["companies", "list-companies"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create company",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"company\": {\n        \"name\": \"Test company 777\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/companies/create-company",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["companies", "create-company"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update company",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"companyId\": \"5f5a2c38f044a9a82b71316d\",\n    \"company\": { \"name\": \"Super company\" }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/companies/update-company",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["companies", "update-company"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete company",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"companyId\": \"5f556630eff1e40138425cab\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/companies/delete-company",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["companies", "delete-company"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get self",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/get-self",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "get-self"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List admins",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/list-admins",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "list-admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List users",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/list-users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "list-users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search users",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"query\": \"u\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/search-users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "search-users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"5f5aafc4d99e351f9c85db61\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/delete-user",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "delete-user"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"5f5ab4c4cbf8442e94aa68b1\",\n    \"user\": { \"lastName\": \"Adminko\" }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/update-user",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "update-user"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Activate user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"5f6dcf3ce7af82a541c3ead8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/activate-user",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "activate-user"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"admin\": {\n        \"firstName\": \"New\",\n        \"lastName\": \"Admin\",\n        \"email\": \"admin12@gmail.com\",\n        \"phone\": \"555666777\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users/create-admin",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", "create-admin"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Authenticate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"i.stetsenko1@gmail.com\",\n    \"password\": \"password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/auth/authenticate",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["auth", "authenticate"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Tests",
+      "item": [
+        {
+          "name": "Create test",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"test\": {\n        \"name\": \"Awesome service\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/create-test",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "create-test"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update test",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f61ec34e8ea70668f5d25f0\",\n    \"test\": { \"name\": \"Candidate interview\" }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/update-test",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "update-test"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Link users",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f624add616d08baa9403288\",\n    \"users\": [\"5f6dcf3ce7af82a541c3ead8\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/link-users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "link-users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unlink users",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f67a8cdcaf11417693176e4\",\n    \"companies\": [\"5f5ab4c4cbf8442e94aa68ae\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/unlink-users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "unlink-users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get test",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f624add616d08baa9403288\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/get-test",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "get-test"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Publish test",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f624add616d08baa9403288\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/publish-test",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "publish-test"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unpublish test",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f624add616d08baa9403288\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/unpublish-test",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "unpublish-test"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete test",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f61cbd1c590c74ad3055fe4\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/delete-test",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "delete-test"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List tests",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/list-tests",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "list-tests"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List linked users",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f624add616d08baa9403288\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/tests/list-linked-users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["tests", "list-linked-users"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Questions",
+      "item": [
+        {
+          "name": "Create question",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"testId\": \"5f624add616d08baa9403288\",\n    \"question\": {\n        \"question\": \"Are you ok?\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/questions/create-question",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["questions", "create-question"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update question",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"questionId\": \"5f6232dc77e544ac3f94645b\",\n    \"question\": { \"question\": \"Are you fine?\" }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/questions/update-question",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["questions", "update-question"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete question",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"questionId\": \"5f6232dc77e544ac3f94645b\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/questions/delete-question",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["questions", "delete-question"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List questions",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"query\": {\n        \"testId\": \"5f624add616d08baa9403288\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/questions/list-questions",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["questions", "list-questions"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "74ef08f2-f296-4d6d-900e-ec845c812352",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "810f81e7-969a-412a-9abc-4ef151ec47c3",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
