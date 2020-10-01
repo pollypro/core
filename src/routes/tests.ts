@@ -5,7 +5,6 @@ import {
   DeleteTest,
   GetTest,
   LinkUser,
-  ListLinkedCompanies,
   ListLinkedUsers,
   ListTests,
   PublishTest,
@@ -137,20 +136,6 @@ TestsRouter.post(
     try {
       await runCommand(UnlinkUser, {}, request.body);
       response.sendStatus(204);
-    } catch (error) {
-      const status = httpCodeByError(error);
-      response.sendStatus(status);
-    }
-  },
-);
-
-TestsRouter.post(
-  '/list-linked-companies',
-  verifyToken,
-  async (request: Request, response: Response) => {
-    try {
-      const context = await runCommand(ListLinkedCompanies, {}, request.body);
-      response.status(200).json(context.linkedCompanies);
     } catch (error) {
       const status = httpCodeByError(error);
       response.sendStatus(status);
