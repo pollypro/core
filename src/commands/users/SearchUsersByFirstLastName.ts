@@ -2,11 +2,11 @@ import * as yup from 'yup';
 import { UsersRepository } from '../../repositories';
 import CurrentUser from '../users/CurrentUser';
 import { PaginationParams } from '../../repositories/utils/pagination';
-import ValidationFailed from "../../errors/ValidationFailed";
+import ValidationFailed from '../../errors/ValidationFailed';
 
 type Params = {
-  query: string,
-  params?: PaginationParams
+  query: string;
+  params?: PaginationParams;
 };
 
 const ParamsSchema = yup.object({
