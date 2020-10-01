@@ -8,4 +8,4 @@ export { default as ListTests } from './ListTests';
 export { default as PublishTest } from './PublishTest';
 export { default as UnlinkUser } from './UnlinkUser';
 export { default as UnpublishTest } from './UnpublishTest';
-export { default as UpdateService } from './UpdateTest';
+export { default as UpdateTest } from './UpdateTest';
