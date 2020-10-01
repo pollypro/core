@@ -2,7 +2,7 @@ import { WithId, ObjectId } from 'mongodb';
 
 export type QuestionSchema = WithId<{
   question: string;
-  serviceId: ObjectId;
+  testId: ObjectId;
   createdAt: Date;
   updatedAt?: Date;
 }>;
