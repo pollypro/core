@@ -5,7 +5,6 @@ import CurrentUser from '../users/CurrentUser';
 type Params = {
   test: {
     name: string;
-    companies?: string[];
     users?: string[];
   };
 };
@@ -16,7 +15,6 @@ export default class CreateTest {
   async execute(context: Record<string, any>, params: Params) {
     const test = await TestsRepository.insertOne({
       ...params.test,
-      companies: (params.test.companies || []).map((id) => new ObjectId(id)),
       users: (params.test.users || []).map((id) => new ObjectId(id)),
     });
     return { ...context, test };
