@@ -14,7 +14,7 @@ export type NewUserDocument = {
   phone: string;
   email: string;
   password: string;
-  status: UserStatus;
+  status?: UserStatus;
 };
 
 export type PatchUserDocument = {
