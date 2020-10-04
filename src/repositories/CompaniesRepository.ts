@@ -13,9 +13,11 @@ type PatchCompanyDocument = {
 };
 
 export default class CompaniesRepository {
+  static readonly collectionName = 'companies';
+
   static async getCollection() {
     const connection = await getConnection();
-    return connection.db().collection<CompanySchema>('companies');
+    return connection.db().collection<CompanySchema>(CompaniesRepository.collectionName);
   }
 
   static async insertOne(document: NewCompanyDocument) {
@@ -87,7 +89,7 @@ export default class CompaniesRepository {
   }
 
   static async drop() {
-    if (await collectionExists('companies')) {
+    if (await collectionExists(CompaniesRepository.collectionName)) {
       const collection = await CompaniesRepository.getCollection();
       await collection.drop();
     }

@@ -13,9 +13,11 @@ type PatchQuestionDocument = {
 };
 
 export default class QuestionsRepository {
+  static readonly collectionName = 'questions';
+
   static async getCollection() {
     const connection = await getConnection();
-    return connection.db().collection<QuestionSchema>('questions');
+    return connection.db().collection<QuestionSchema>(QuestionsRepository.collectionName);
   }
 
   static async insertOne(document: NewQuestionDocument) {
@@ -80,7 +82,7 @@ export default class QuestionsRepository {
   }
 
   static async drop() {
-    if (await collectionExists('services')) {
+    if (await collectionExists(QuestionsRepository.collectionName)) {
       const collection = await QuestionsRepository.getCollection();
       await collection.drop();
     }

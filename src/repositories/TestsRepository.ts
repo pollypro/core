@@ -17,6 +17,8 @@ type PatchTestDocument = {
 };
 
 export default class TestsRepository {
+  static readonly collectionName = 'tests';
+
   static async getCollection() {
     const connection = await getConnection();
     return connection.db().collection<TestSchema>('tests');
@@ -95,7 +97,7 @@ export default class TestsRepository {
   }
 
   static async drop() {
-    if (await collectionExists('tests')) {
+    if (await collectionExists(TestsRepository.collectionName)) {
       const collection = await TestsRepository.getCollection();
       await collection.drop();
     }

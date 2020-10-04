@@ -25,9 +25,11 @@ export type PatchUserDocument = {
 };
 
 export default class UsersRepository {
+  static readonly collectionName = 'users';
+
   static async getCollection() {
     const connection = await getConnection();
-    return connection.db().collection<UserSchema>('users');
+    return connection.db().collection<UserSchema>(UsersRepository.collectionName);
   }
 
   static async authenticate(email: string, password: string) {
@@ -153,7 +155,7 @@ export default class UsersRepository {
   }
 
   static async drop() {
-    if (await collectionExists('users')) {
+    if (await collectionExists(UsersRepository.collectionName)) {
       const collection = await UsersRepository.getCollection();
       await collection.drop();
     }
