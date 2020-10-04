@@ -2,6 +2,7 @@ import { hash } from 'bcrypt';
 import { generate as generatePassword } from 'generate-password';
 import { UsersRepository } from '../../repositories';
 import CurrentUser from '../users/CurrentUser';
+import { UserStatus } from '../../constants/users';
 
 type Params = {
   admin: {
@@ -19,7 +20,7 @@ export default class CreateAdmin {
     const admin = await UsersRepository.insertOne({
       ...params.admin,
       isAdmin: true,
-      status: 'invited',
+      status: UserStatus.Invited,
       password: await hash(
         generatePassword({
           length: 16,
