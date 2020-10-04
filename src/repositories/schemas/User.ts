@@ -1,4 +1,5 @@
 import { WithId, ObjectId } from 'mongodb';
+import { UserStatus } from '../../constants/users';
 
 export type UserSchema = WithId<{
   firstName: string;
@@ -8,7 +9,7 @@ export type UserSchema = WithId<{
   phone: string;
   email: string;
   password: string;
-  status: string;
+  status: UserStatus;
   createdAt: Date;
   updatedAt?: Date;
 }>;
