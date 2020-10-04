@@ -1,4 +1,5 @@
 import { hashSync } from 'bcrypt';
+import { UserStatus } from '../../src/constants/users';
 
 export const admin1 = {
   firstName: 'Ivan',
@@ -6,7 +7,7 @@ export const admin1 = {
   phone: '+380933814747',
   email: 'i.stetsenko1@gmail.com',
   isAdmin: true,
-  status: 'activated',
+  status: UserStatus.Active,
   password: hashSync('password', 8),
 };
 
@@ -16,7 +17,7 @@ export const admin2 = {
   phone: '+380933814747',
   email: 'admin1@gmail.com',
   isAdmin: true,
-  status: 'activated',
+  status: UserStatus.Active,
   password: hashSync('password', 8),
 };
 
@@ -26,7 +27,7 @@ export const admin3 = {
   phone: '+380933814747',
   email: 'admin2@gmail.com',
   isAdmin: true,
-  status: 'activated',
+  status: UserStatus.Active,
   password: hashSync('password', 8),
 };
 
@@ -36,7 +37,7 @@ export const user1 = {
   phone: '+380931234567',
   email: 'user1@gmail.com',
   isAdmin: false,
-  status: 'inactive',
+  status: UserStatus.Inactive,
   password: hashSync('password', 8),
 };
 
@@ -46,7 +47,7 @@ export const user2 = {
   phone: '+380931234567',
   email: 'i.stetsenko1@gmail.com',
   isAdmin: false,
-  status: 'inactive',
+  status: UserStatus.Inactive,
   password: hashSync('password', 8),
 };
 
