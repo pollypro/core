@@ -4,6 +4,7 @@ import { getConnection, collectionExists } from '../utils/mongodb';
 import { UserSchema } from './schemas/User';
 import { mapUser } from './mappers/users';
 import { getMongoPagination, PaginationParams } from './utils/pagination';
+import { UserStatus } from '../constants/users';
 
 export type NewUserDocument = {
   firstName: string;
@@ -13,14 +14,14 @@ export type NewUserDocument = {
   phone: string;
   email: string;
   password: string;
-  status: string;
+  status: UserStatus;
 };
 
 export type PatchUserDocument = {
   firstName?: string;
   lastName?: string;
   phone?: string;
-  status?: 'active' | 'inactive';
+  status?: UserStatus;
 };
 
 export default class UsersRepository {
@@ -41,6 +42,7 @@ export default class UsersRepository {
 
     try {
       const result = await collection.insertOne({
+        status: UserStatus.Inactive,
         ...document,
         companyId: document.companyId ? new ObjectId(document.companyId) : null,
         createdAt: new Date(),
